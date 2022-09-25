@@ -1,0 +1,55 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Erick Vargas | Portfolio" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#02ABB2" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+  </head>
+
+  <body class="min-h-screen bg-very-light-green font-montserrat dark:bg-black">
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  @font-face {
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/montserrat-v25-latin-regular.woff2") format("woff2"),
+      url("/fonts/montserrat-v25-latin-regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/montserrat-v25-latin-500.woff2") format("woff2"),
+      url("/fonts/montserrat-v25-latin-500.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+    src: url("/fonts/montserrat-v25-latin-700.woff2") format("woff2"),
+      url("/fonts/montserrat-v25-latin-700.woff") format("woff");
+  }
+</style>
