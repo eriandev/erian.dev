@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  color: #FFF;
+  display: grid;
+  line-height: 1.5;
+  min-height: 100vh;
+  background: #000;
+  place-items: center;
+}
+
+main {
+  gap: 1rem;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 100%;
+  font-family: Ubuntu, Segoe UI, Roboto, Cantarell, Noto Sans, sans-serif;
+}
+
+h2 {
+  color: #40B8B8;
+  font-weight: 700;
+  font-size: 1.5rem;
+  font-family: Comfortaa, Segoe UI, Roboto, Cantarell, Noto Sans, sans-serif;
+}
+
+ul {
+  gap: 1rem;
+  display: grid;
+  list-style: none;
+  justify-content: center;
+  grid-template-rows: fit-content(100%);
+  grid-template-columns: repeat(3, fit-content(100%));
+}
+
+a {
+  width: 4rem;
+  height: 4rem;
+  display: grid;
+  color: inherit;
+  place-items: center;
+  border-radius: 999px;
+  text-decoration: inherit;
+}
+
+a:hover {
+  background-color: #111;
+}
+
+svg {
+  width: 2.25rem;
+  height: 2.25rem;
+}
