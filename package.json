@@ -9,13 +9,14 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "lint": "eslint src/**/*.{astro,js}",
-    "format": "prettier --write src/**/*.{astro,js,json}"
+    "lint": "eslint src/**/*.{astro,ts}",
+    "format": "prettier --write src/**/*.{astro,ts,json}"
   },
   "devDependencies": {
     "@astrojs/tailwind": "3.0.1",
     "@typescript-eslint/parser": "5.50.0",
     "astro": "2.0.5",
+    "astro-icon": "0.8.0",
     "eslint": "8.33.0",
     "eslint-plugin-astro": "0.23.0",
     "prettier": "2.8.3",

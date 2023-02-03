@@ -1,5 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Icon from "@/components/Icon.astro";
+import Link from "@/components/Link.astro";
+
+import { SOCIALS_NETWORKS } from "@/utils/constants";
 ---
 
 <Layout>
@@ -9,6 +13,17 @@ import Layout from "@/layouts/Layout.astro";
       <h2 class="text-heading2 font-medium uppercase tracking-[0.5em] text-secondary dark:text-primary">
         Frontend Developer
       </h2>
+      <ul class="flex justify-center gap-12 pt-8">
+        {
+          SOCIALS_NETWORKS.map(({ name, url }) => (
+            <li>
+              <Link external to={url} title={name}>
+                <Icon name={name} class="h-6 w-6 text-black dark:text-white md:h-8 md:w-8" />
+              </Link>
+            </li>
+          ))
+        }
+      </ul>
     </main>
   </section>
 </Layout>
