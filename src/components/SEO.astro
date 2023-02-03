@@ -1,0 +1,31 @@
+---
+import { BASE_PATH } from "@/utils/constants";
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+
+<link rel="icon" type="image/svg+xml" href={`${BASE_PATH}/favicon.svg`} />
+<link rel="apple-touch-icon" href={`${BASE_PATH}/favicon.svg`} />
+
+<meta name="generator" content={Astro.generator} />
+
+<meta name="og:site_name" property="og:site_name" content="Erick Vargas" />
+<meta name="og:type" property="og:type" content="website" />
+<meta property="og:description" content={description} />
+<meta property="og:title" content={title} />
+<meta property="og:image" content={`${BASE_PATH}/preview.png`} />
+<meta property="og:url" content={BASE_PATH} />
+
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:creator" content="@eriandev" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={`${BASE_PATH}/preview.png`} />
