@@ -1,10 +1,15 @@
 ---
-import { Icon } from 'astro-icon'
+import { Icon as AstroIcon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
 
-type Props = Omit<HTMLAttributes<'svg'>, 'slot'> & { name: string }
+interface Props extends HTMLAttributes<'svg'> {
+  name: string
+  size?: number
+  width?: number
+  height?: number
+}
 
-const { name, ...restProps } = Astro.props
+const { name, size, width, height, ...restProps } = Astro.props
 ---
 
-<Icon name={name} {...restProps} />
+<AstroIcon {name} width={size ?? width} height={size ?? height} {...restProps} />
