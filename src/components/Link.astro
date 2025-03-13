@@ -1,14 +1,14 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes } from 'astro/types'
 
-export interface Props extends HTMLAttributes<"a"> {
-  to: string;
-  external?: boolean;
+interface Props extends HTMLAttributes<'a'> {
+  to: string
+  external?: boolean
 }
 
-const { to, title, external = false } = Astro.props;
+const { to, title, external = false } = Astro.props
 ---
 
-<a href={to} title={title} target={external ? "_blank" : null} rel={external ? "noopener noreferrer" : null}>
+<a href={to} title={title} target={external ? '_blank' : null} rel={external ? 'noopener noreferrer' : null}>
   <slot />
 </a>

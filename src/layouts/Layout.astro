@@ -1,18 +1,18 @@
 ---
-import SEO from "@/components/SEO.astro";
+import SEO from '@/components/SEO.astro'
 
 export interface Props {
-  title?: string;
-  description?: string;
+  title?: string
+  description?: string
 }
 
 const {
-  title = "Erick Vargas | Portfolio",
-  description = "Focused on improving performance and the user experience in your web applications",
-} = Astro.props;
+  title = 'Erick Vargas | Portfolio',
+  description = 'Focused on improving performance and the user experience in your web applications',
+} = Astro.props
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -23,30 +23,33 @@ const {
 
     <style is:global>
       @font-face {
-        font-family: "Montserrat";
+        font-family: 'Montserrat';
         font-weight: 400;
         font-style: normal;
         font-display: swap;
-        src: url("/fonts/montserrat-v25-latin-regular.woff2") format("woff2"),
-          url("/fonts/montserrat-v25-latin-regular.woff") format("woff");
+        src:
+          url('/fonts/montserrat-v25-latin-regular.woff2') format('woff2'),
+          url('/fonts/montserrat-v25-latin-regular.woff') format('woff');
       }
 
       @font-face {
-        font-family: "Montserrat";
+        font-family: 'Montserrat';
         font-weight: 500;
         font-style: normal;
         font-display: swap;
-        src: url("/fonts/montserrat-v25-latin-500.woff2") format("woff2"),
-          url("/fonts/montserrat-v25-latin-500.woff") format("woff");
+        src:
+          url('/fonts/montserrat-v25-latin-500.woff2') format('woff2'),
+          url('/fonts/montserrat-v25-latin-500.woff') format('woff');
       }
 
       @font-face {
-        font-family: "Montserrat";
+        font-family: 'Montserrat';
         font-weight: 700;
         font-style: normal;
         font-display: swap;
-        src: url("/fonts/montserrat-v25-latin-700.woff2") format("woff2"),
-          url("/fonts/montserrat-v25-latin-700.woff") format("woff");
+        src:
+          url('/fonts/montserrat-v25-latin-700.woff2') format('woff2'),
+          url('/fonts/montserrat-v25-latin-700.woff') format('woff');
       }
     </style>
   </head>
