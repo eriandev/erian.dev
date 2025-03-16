@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('/fonts/montserrat-v25-latin-regular.woff2') format('woff2'),
+    url('/fonts/montserrat-v25-latin-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('/fonts/montserrat-v25-latin-500.woff2') format('woff2'),
+    url('/fonts/montserrat-v25-latin-500.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src:
+    url('/fonts/montserrat-v25-latin-700.woff2') format('woff2'),
+    url('/fonts/montserrat-v25-latin-700.woff') format('woff');
+}
+
+@theme {
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --font-montserrat: 'Montserrat', sans-serif;
+
+  --color-primary: #02ABB2;
+  --color-secondary: #2D7C83;
+  --color-very-light-green: #F4FBFB;
+  --color-white: #FFF;
+  --color-black: #2A2A2A;
+  --color-transparent: transparent;
+
+  --text-heading1: clamp(2.25rem, 5vw, 4rem);
+  --text-heading1--line-height: 1.2;
+  --text-heading2: clamp(0.875rem, 2vw, 1.5rem);
+  --text-heading2--line-height: 1.2;
+
+  --radius-2\.5xl: 1.25rem;
+}
