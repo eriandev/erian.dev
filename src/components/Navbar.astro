@@ -1,0 +1,44 @@
+---
+import Link from '@/components/Link.astro'
+import Text from '@/components/Text.astro'
+import Image from '@/components/Image.astro'
+import Container from '@/components/Container.astro'
+
+interface Props {
+  class?: string
+  sections?: Array<{ link: string; name: string }>
+}
+
+const { class: extraClass, sections } = Astro.props
+---
+
+<Container
+  as="nav"
+  class:list={[
+    'border-opacity-20 font-primary flex w-full items-center justify-between rounded-full border-2 border-white bg-slate-900 px-4 py-3 font-bold',
+    extraClass,
+  ]}
+>
+  <article class="flex items-center gap-x-3">
+    <Image
+      width={36}
+      height={36}
+      alt="Profile"
+      src="/images/profile.webp"
+      class="border-primary size-9 rounded-full border-2"
+    />
+    <Text>Erick Vargas</Text>
+  </article>
+
+  {
+    sections && (
+      <ul class="flex gap-x-6 pr-4 *:text-sm">
+        {sections.map(({ link, name }) => (
+          <li>
+            <Link to={link}>{name}</Link>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Container>

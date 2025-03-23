@@ -1,54 +1,82 @@
 @import 'tailwindcss';
 
 @font-face {
-  font-family: 'Montserrat';
+  font-family: 'Ubuntu Sans';
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  src:
-    url('/fonts/montserrat-v25-latin-regular.woff2') format('woff2'),
-    url('/fonts/montserrat-v25-latin-regular.woff') format('woff');
+  src: url('/fonts/ubuntu-sans-400.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  font-weight: 500;
-  font-style: normal;
+  font-family: 'Ubuntu Sans';
+  font-weight: 400;
+  font-style: italic;
   font-display: swap;
-  src:
-    url('/fonts/montserrat-v25-latin-500.woff2') format('woff2'),
-    url('/fonts/montserrat-v25-latin-500.woff') format('woff');
+  src: url('/fonts/ubuntu-sans-400-italic.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Montserrat';
-  font-weight: 700;
+  font-family: 'Ubuntu Sans';
+  font-weight: 600;
   font-style: normal;
   font-display: swap;
-  src:
-    url('/fonts/montserrat-v25-latin-700.woff2') format('woff2'),
-    url('/fonts/montserrat-v25-latin-700.woff') format('woff');
+  src: url('/fonts/ubuntu-sans-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Mono';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/ubuntu-sans-mono-600.woff2') format('woff2');
 }
 
 @theme {
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
+  --font-primary: 'Ubuntu Sans Mono', monospace;
+  --font-secondary: 'Ubuntu Sans', sans-serif;
 
-  --font-montserrat: 'Montserrat', sans-serif;
+  --color-black: #090e19;
+  --color-primary: #02abb2;
+  --color-secondary: #5e79d1;
 
-  --color-primary: #02ABB2;
-  --color-secondary: #2D7C83;
-  --color-very-light-green: #F4FBFB;
-  --color-white: #FFF;
-  --color-black: #2A2A2A;
-  --color-transparent: transparent;
+  --text-title: clamp(2.25rem, 5vw, 4rem);
+  --text-title--line-height: 1.2;
+  --text-subtitle: clamp(0.875rem, 2vw, 1.5rem);
+  --text-subtitle--line-height: 1.2;
+}
 
-  --text-heading1: clamp(2.25rem, 5vw, 4rem);
-  --text-heading1--line-height: 1.2;
-  --text-heading2: clamp(0.875rem, 2vw, 1.5rem);
-  --text-heading2--line-height: 1.2;
+@layer components {
+  .btn {
+    @apply font-secondary cursor-pointer px-12 py-3 leading-tight font-bold text-white;
+    @apply border-primary rounded-md border-4 transition-[scale] duration-250 ease-in-out;
 
-  --radius-2\.5xl: 1.25rem;
+    &:hover {
+      scale: 1.05;
+    }
+
+    &:active {
+      scale: 1;
+    }
+
+    &.primary {
+      background-color: var(--color-primary);
+    }
+
+    &.secondary {
+      border-color: --alpha(var(--color-primary) / 40%);
+      background-color: --alpha(var(--color-primary) / 10%);
+    }
+  }
+
+  .text.featured {
+    @apply from-primary to-secondary inline-block bg-linear-to-r bg-clip-text text-transparent;
+  }
+
+  .link.featured {
+    @apply text-primary relative inline-block leading-tight font-bold;
+    @apply before:from-primary before:to-secondary before:bg-linear-to-r;
+    @apply before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0;
+    @apply before:transition-[width] before:duration-300 before:ease-[ease] before:content-[''] hover:before:w-full;
+  }
 }

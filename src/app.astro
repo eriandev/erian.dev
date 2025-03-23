@@ -1,0 +1,49 @@
+---
+import { BASE_PATH } from '@/utils/consts'
+import '@/app.css'
+
+export interface Props {
+  title: string
+  lang?: string
+  slug?: string
+  bodyClass?: string
+  description: string
+}
+
+const { title, bodyClass, description, lang = 'en', slug = '' } = Astro.props
+const canonicalUrl = typeof slug === 'string' ? BASE_PATH + '/' + slug : BASE_PATH
+---
+
+<!doctype html>
+<html {lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href={BASE_PATH + '/favicon.svg'} />
+    <link rel="apple-touch-icon" href={BASE_PATH + '/favicon.svg'} />
+    <meta name="theme-color" content="#02ABB2" />
+
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={BASE_PATH} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={BASE_PATH + '/preview.png'} />
+
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:creator" content="@eriandev" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={BASE_PATH + '/preview.png'} />
+
+    <slot name="head" />
+  </head>
+
+  <body class:list={['min-h-screen bg-black text-white', bodyClass]}>
+    <slot />
+  </body>
+</html>

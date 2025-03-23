@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'p'> {
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'strong' | 'span' | 'p'
+  featured?: boolean
+}
+
+const { as: Tag = 'p', class: extraClass, featured = false } = Astro.props
+---
+
+<Tag class:list={[{ 'text featured': featured }, extraClass]}>
+  <slot />
+</Tag>

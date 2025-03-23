@@ -1,0 +1,31 @@
+---
+import Link from '@/components/Link.astro'
+import Icon from '@/components/Icon.astro'
+import Image from '@/components/Image.astro'
+---
+
+<aside class="w-full">
+  <div class="flex">
+    <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 *:text-gray-300">
+      <Link external to="https://github.com/eriandev" title="Github">
+        <Icon name="github" size={32} class="relative transition-[scale] duration-300 ease-in-out hover:scale-125" />
+      </Link>
+      <Link external to="https://www.linkedin.com/in/eriandev" title="Linkedin">
+        <Icon name="linkedin" size={32} class="relative transition-[scale] duration-300 ease-in-out hover:scale-125" />
+      </Link>
+      <Link external to="https://x.com/eriandev" title="Twitter">
+        <Icon name="twitter" size={32} class="relative transition-[scale] duration-300 ease-in-out hover:scale-125" />
+      </Link>
+    </section>
+    <section>
+      <Image
+        width={444}
+        height={440}
+        alt="Green glow"
+        src="/images/green-glow.webp"
+        class="absolute inset-0 -top-full h-[820px] w-full"
+      />
+      <Image alt="code" width={120} height={120} src="/images/code.webp" class="relative h-full w-full" />
+    </section>
+  </div>
+</aside>

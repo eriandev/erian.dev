@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends HTMLAttributes<'div'> {
+  as?: 'main' | 'header' | 'nav' | 'section' | 'article' | 'footer' | 'aside' | 'div'
+  unlimited?: boolean
+}
+
+const { as: Tag = 'div', class: extraClass, unlimited = false, ...restProps } = Astro.props
+---
+
+<Tag class:list={[{ 'mx-auto max-w-6xl': !unlimited }, extraClass]} {...restProps}>
+  <slot />
+</Tag>
