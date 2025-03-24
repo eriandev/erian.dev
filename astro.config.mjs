@@ -7,10 +7,6 @@ const { BASE_PATH: site } = loadEnv(process.env.NODE_ENV, process.cwd(), '')
 // https://astro.build/config
 export default defineConfig({
   site,
-  experimental: {
-    svg: true
-  },
-  vite: {
-    plugins: [tailwindcss()]
-  },
+  experimental: { svg: true },
+  vite: { plugins: [tailwindcss()] },
 })
