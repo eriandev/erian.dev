@@ -10,7 +10,7 @@ export interface Props {
   description: string
 }
 
-const { title, bodyClass, description, lang = 'en', slug = '' } = Astro.props
+const { title, bodyClass, description, lang = 'en', slug } = Astro.props
 const canonicalUrl = typeof slug === 'string' ? BASE_PATH + '/' + slug : BASE_PATH
 ---
 
