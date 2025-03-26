@@ -1,12 +1,10 @@
 ---
 import { Image } from 'astro:assets'
 import Layout from '@/app.astro'
+import Icon from '@/components/Icon.astro'
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
 import Container from '@/components/Container.astro'
-import LinkedinIcon from '@/icons/linkedin.svg'
-import TwitterIcon from '@/icons/twitter.svg'
-import GithubIcon from '@/icons/github.svg'
 import GreenGlowImage from '@/assets/green-glow.webp'
 import { getPgMainContent } from '@/services/contentful'
 
@@ -92,16 +90,25 @@ const asidePictureSource = `https:${asidePicture.source.fields.file.url}`
             <div class="flex">
               <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 *:text-gray-300">
                 <Link external to="https://github.com/eriandev" title="Github">
-                  <GithubIcon size={32} class="relative transition-[scale] duration-300 ease-in-out hover:scale-125" />
+                  <Icon
+                    size={32}
+                    name="github"
+                    class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
+                  />
                 </Link>
                 <Link external to="https://www.linkedin.com/in/eriandev" title="Linkedin">
-                  <LinkedinIcon
+                  <Icon
                     size={32}
+                    name="linkedin"
                     class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
                   />
                 </Link>
                 <Link external to="https://x.com/eriandev" title="Twitter">
-                  <TwitterIcon size={32} class="relative transition-[scale] duration-300 ease-in-out hover:scale-125" />
+                  <Icon
+                    size={32}
+                    name="twitter"
+                    class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
+                  />
                 </Link>
               </section>
               {
