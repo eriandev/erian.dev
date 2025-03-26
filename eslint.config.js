@@ -12,6 +12,7 @@ export default [
       '@typescript-eslint/no-magic-numbers': 'off',
       '@typescript-eslint/prefer-destructuring': 'off',
       '@typescript-eslint/triple-slash-reference': 'off',
+      '@typescript-eslint/no-unsafe-type-assertion': 'off',
       '@typescript-eslint/no-unnecessary-type-parameters': 'off',
       'no-console': ['warn', { allow: ['info', 'warn', 'error'] }],
     },

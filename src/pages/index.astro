@@ -3,21 +3,26 @@ import Layout from '@/app.astro'
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
 import Image from '@/components/Image.astro'
-// import Button from '@/components/Button.astro'
-// import Navbar from '@/components/Navbar.astro'
 import Container from '@/components/Container.astro'
 import LinkedinIcon from '@/icons/linkedin.svg'
 import TwitterIcon from '@/icons/twitter.svg'
 import GithubIcon from '@/icons/github.svg'
+import { getPgMainContent } from '@/services/contentful'
 
-const title = 'Erick Vargas | Portfolio'
-const description = 'Focused on improving performance and the user experience in your web applications'
+const {
+  actions,
+  asideImage,
+  currentlyLearning,
+  description: aboutMe,
+  headDescription: description,
+  headLang: lang,
+  headThemeColor: themeColor,
+  headTitle: title,
+  slug,
+} = await getPgMainContent()
 ---
 
-<Layout {title} {description}>
-  <!-- <Container as="header" class="fixed inset-x-0 top-0 z-30 w-full px-4 pt-6 md:px-8">
-    <Navbar />
-  </Container> -->
+<Layout {lang} {title} {description} {themeColor} {slug}>
   <Container unlimited as="main">
     <section class="lg:overflow-hidden">
       <div
@@ -30,10 +35,17 @@ const description = 'Focused on improving performance and the user experience in
                 <Text featured as="strong">Erick Vargas</Text> Frontend developer.
               </Text>
             </header>
-            <!-- <footer class="mt-6 flex flex-wrap gap-4 md:gap-8">
-              <Button primary id="btn-work">Let's Work</Button>
-              <Button secondary id="btn-who">Who is me</Button>
-            </footer> -->
+            {
+              actions && (
+                <footer class="mt-6 flex flex-wrap gap-4 md:gap-8">
+                  {actions.map(({ fields: { asButton, external, featured, href, label } }) => (
+                    <Link {featured} {external} btn={asButton} to={href}>
+                      {label}
+                    </Link>
+                  ))}
+                </footer>
+              )
+            }
           </article>
 
           <Container
@@ -41,10 +53,32 @@ const description = 'Focused on improving performance and the user experience in
             as="article"
             class="font-secondary w-full max-w-2xl pt-10 text-xl tracking-wide text-balance text-gray-300 lg:absolute lg:bottom-16 lg:left-8"
           >
-            <Text>
-              I love writing code, developing high performance web and apps with a focus on creating good and secure
-              user experiences.
-            </Text>
+            {
+              aboutMe?.map(({ fields: { featured, label, tag } }) => (
+                <Text {featured} as={tag}>
+                  {label}
+                </Text>
+              ))
+            }
+            {
+              currentlyLearning && (
+                <Text>
+                  I am currently learning{' '}
+                  {currentlyLearning.map(({ fields: { asButton, external, featured, href, label } }, index) => (
+                    <>
+                      <Link {featured} {external} btn={asButton} to={href}>
+                        {label}
+                      </Link>
+                      {index < currentlyLearning.length - 2
+                        ? ', '
+                        : index === currentlyLearning.length - 2
+                          ? ' & '
+                          : ''}
+                    </>
+                  ))}
+                </Text>
+              )
+            }
           </Container>
         </section>
         <section class="relative md:h-[420px]">
@@ -66,16 +100,26 @@ const description = 'Focused on improving performance and the user experience in
                   <TwitterIcon size={32} class="relative transition-[scale] duration-300 ease-in-out hover:scale-125" />
                 </Link>
               </section>
-              <aside>
-                <Image
-                  width={444}
-                  height={440}
-                  alt="Green glow"
-                  src="/images/green-glow.webp"
-                  class="absolute inset-0 -top-full h-[820px] w-full"
-                />
-                <Image alt="code" width={120} height={120} src="/images/code.webp" class="relative h-full w-full" />
-              </aside>
+              {
+                asideImage && (
+                  <aside>
+                    <Image
+                      width={444}
+                      height={440}
+                      alt="Green glow"
+                      src="/images/green-glow.webp"
+                      class="absolute inset-0 -top-full h-[820px] w-full"
+                    />
+                    <Image
+                      alt={asideImage.fields.alt}
+                      width={asideImage.fields.width}
+                      height={asideImage.fields.height}
+                      src={asideImage.fields.source.fields.file.url}
+                      class="relative h-full w-full"
+                    />
+                  </aside>
+                )
+              }
             </div>
           </div>
         </section>

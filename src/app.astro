@@ -7,10 +7,11 @@ export interface Props {
   lang?: string
   slug?: string
   bodyClass?: string
+  themeColor?: string
   description: string
 }
 
-const { title, bodyClass, description, lang = 'en', slug } = Astro.props
+const { title, bodyClass, description, lang = 'en', slug, themeColor } = Astro.props
 const canonicalUrl = typeof slug === 'string' ? BASE_PATH + '/' + slug : BASE_PATH
 ---
 
@@ -24,7 +25,7 @@ const canonicalUrl = typeof slug === 'string' ? BASE_PATH + '/' + slug : BASE_PA
 
     <link rel="icon" type="image/svg+xml" href={BASE_PATH + '/favicon.svg'} />
     <link rel="apple-touch-icon" href={BASE_PATH + '/favicon.svg'} />
-    <meta name="theme-color" content="#02ABB2" />
+    {themeColor && <meta name="theme-color" content={themeColor} />}
 
     <link rel="canonical" href={canonicalUrl} />
 
