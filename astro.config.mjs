@@ -9,4 +9,8 @@ export default defineConfig({
   site,
   experimental: { svg: true },
   vite: { plugins: [tailwindcss()] },
+  image: {
+    domains: ['images.ctfassets.net'],
+    remotePatterns: [{ protocol: 'https' }],
+  },
 })

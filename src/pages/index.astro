@@ -1,12 +1,13 @@
 ---
+import { Image } from 'astro:assets'
 import Layout from '@/app.astro'
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
-import Image from '@/components/Image.astro'
 import Container from '@/components/Container.astro'
 import LinkedinIcon from '@/icons/linkedin.svg'
 import TwitterIcon from '@/icons/twitter.svg'
 import GithubIcon from '@/icons/github.svg'
+import GreenGlowImage from '@/assets/green-glow.webp'
 import { getPgMainContent } from '@/services/contentful'
 
 const {
@@ -20,6 +21,9 @@ const {
   headTitle: title,
   slug,
 } = await getPgMainContent()
+
+const { fields: asidePicture } = asideImage
+const asidePictureSource = `https:${asidePicture.source.fields.file.url}`
 ---
 
 <Layout {lang} {title} {description} {themeColor} {slug}>
@@ -107,14 +111,14 @@ const {
                       width={444}
                       height={440}
                       alt="Green glow"
-                      src="/images/green-glow.webp"
+                      src={GreenGlowImage}
                       class="absolute inset-0 -top-full h-[820px] w-full"
                     />
                     <Image
-                      alt={asideImage.fields.alt}
-                      width={asideImage.fields.width}
-                      height={asideImage.fields.height}
-                      src={asideImage.fields.source.fields.file.url}
+                      alt={asidePicture.alt}
+                      src={asidePictureSource}
+                      width={asidePicture.width}
+                      height={asidePicture.height}
                       class="relative h-full w-full"
                     />
                   </aside>
