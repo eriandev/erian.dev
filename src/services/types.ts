@@ -1,3 +1,5 @@
+import type { IconName } from 'virtual:icon'
+
 export interface PgMainContent {
   name: string
   headTitle: string
@@ -28,6 +30,17 @@ export interface PgMainContent {
       name: string
       href: string
       label: string
+      asButton: boolean
+      external: boolean
+      featured: boolean
+    }
+  }>
+  socials: Array<{
+    fields: {
+      name: string
+      href: string
+      label?: string
+      iconName?: IconName
       asButton: boolean
       external: boolean
       featured: boolean

@@ -18,10 +18,15 @@ const {
   headThemeColor: themeColor,
   headTitle: title,
   slug,
+  socials,
 } = await getPgMainContent()
 
 const { fields: asidePicture } = asideImage
 const asidePictureSource = `https:${asidePicture.source.fields.file.url}`
+
+function getSeparationSymbol(arryaLength: number, index: number) {
+  return index < arryaLength - 2 ? ', ' : index === arryaLength - 2 ? ' & ' : ''
+}
 ---
 
 <Layout {lang} {title} {description} {themeColor} {slug}>
@@ -71,11 +76,7 @@ const asidePictureSource = `https:${asidePicture.source.fields.file.url}`
                       <Link {featured} {external} btn={asButton} to={href}>
                         {label}
                       </Link>
-                      {index < currentlyLearning.length - 2
-                        ? ', '
-                        : index === currentlyLearning.length - 2
-                          ? ' & '
-                          : ''}
+                      {getSeparationSymbol(currentlyLearning.length, index)}
                     </>
                   ))}
                 </Text>
@@ -88,29 +89,23 @@ const asidePictureSource = `https:${asidePicture.source.fields.file.url}`
             class="hidden h-full w-full min-w-[460px] flex-col gap-4 sm:min-w-[660px] lg:absolute lg:top-64 lg:block lg:min-w-[1150px]"
           >
             <div class="flex">
-              <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 *:text-gray-300">
-                <Link external to="https://github.com/eriandev" title="Github">
-                  <Icon
-                    size={32}
-                    name="github"
-                    class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
-                  />
-                </Link>
-                <Link external to="https://www.linkedin.com/in/eriandev" title="Linkedin">
-                  <Icon
-                    size={32}
-                    name="linkedin"
-                    class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
-                  />
-                </Link>
-                <Link external to="https://x.com/eriandev" title="Twitter">
-                  <Icon
-                    size={32}
-                    name="twitter"
-                    class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
-                  />
-                </Link>
-              </section>
+              {
+                socials && (
+                  <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 *:text-gray-300">
+                    {socials.map(({ fields: { external, href, iconName, label } }) => (
+                      <Link {external} to={href} title={label}>
+                        {iconName && (
+                          <Icon
+                            size={32}
+                            name={iconName}
+                            class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
+                          />
+                        )}
+                      </Link>
+                    ))}
+                  </section>
+                )
+              }
               {
                 asideImage && (
                   <aside>
