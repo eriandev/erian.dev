@@ -1,10 +1,7 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
+import type { TextProps } from '@/components/types'
 
-interface Props extends HTMLAttributes<'p'> {
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'strong' | 'span' | 'p'
-  featured?: boolean
-}
+interface Props extends TextProps {}
 
 const { as: Tag = 'p', class: extraClass, featured = false } = Astro.props
 ---

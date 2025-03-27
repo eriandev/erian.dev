@@ -1,12 +1,7 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
+import type { LinkProps } from '@/components/types'
 
-interface Props extends Omit<HTMLAttributes<'a'>, 'href'> {
-  to: string
-  btn?: boolean
-  external?: boolean
-  featured?: boolean
-}
+interface Props extends LinkProps {}
 
 const { to, title, external = false, featured = false, btn = false, class: extraClass, ...restProps } = Astro.props
 const rel = external ? 'noopener noreferrer' : null

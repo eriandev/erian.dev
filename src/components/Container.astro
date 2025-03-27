@@ -1,10 +1,7 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
+import type { ContainerProps } from '@/components/types'
 
-interface Props extends HTMLAttributes<'div'> {
-  as?: 'main' | 'header' | 'nav' | 'section' | 'article' | 'footer' | 'aside' | 'div'
-  unlimited?: boolean
-}
+interface Props extends ContainerProps {}
 
 const { as: Tag = 'div', class: extraClass, unlimited = false, ...restProps } = Astro.props
 ---

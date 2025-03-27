@@ -3,11 +3,9 @@ import Link from '@/components/Link.astro'
 import Text from '@/components/Text.astro'
 import Image from '@/components/Image.astro'
 import Container from '@/components/Container.astro'
+import type { NavbarProps } from '@/components/types'
 
-interface Props {
-  class?: string
-  sections?: Array<{ link: string; name: string }>
-}
+interface Props extends NavbarProps {}
 
 const { class: extraClass, sections } = Astro.props
 ---
