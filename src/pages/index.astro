@@ -1,11 +1,10 @@
 ---
-import { Image } from 'astro:assets'
 import Layout from '@/app.astro'
 import Icon from '@/components/Icon.astro'
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
+import Image from '@/components/Image.astro'
 import Container from '@/components/Container.astro'
-import GreenGlowImage from '@/assets/green-glow.webp'
 import { getPgMainContent } from '@/services/contentful'
 
 const {
@@ -112,9 +111,9 @@ function getSeparationSymbol(arryaLength: number, index: number) {
                     <Image
                       width={444}
                       height={440}
-                      alt="Green glow"
-                      src={GreenGlowImage}
+                      src="/images/green-glow.webp"
                       class="absolute inset-0 -top-full h-[820px] w-full"
+                      alt={`Green glow that serves as an areola for the '${asidePicture.alt}' image`}
                     />
                     <Image
                       alt={asidePicture.alt}
