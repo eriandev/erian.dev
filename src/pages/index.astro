@@ -11,7 +11,7 @@ const {
   actions,
   asideImage,
   currentlyLearning,
-  description: aboutMe,
+  description: descriptionParagraph,
   headDescription: description,
   headLang: lang,
   headThemeColor: themeColor,
@@ -21,6 +21,8 @@ const {
 } = await getPgMainContent()
 
 const { fields: asidePicture } = asideImage
+const aboutMe = descriptionParagraph?.slice(0, -1)
+const learningParagraph = descriptionParagraph?.slice(-1)[0]?.fields
 const asidePictureSource = `https:${asidePicture.source.fields.file.url}`
 
 function getSeparationSymbol(arryaLength: number, index: number) {
@@ -44,8 +46,8 @@ function getSeparationSymbol(arryaLength: number, index: number) {
             {
               actions && (
                 <footer class="mt-6 flex flex-wrap gap-4 md:gap-8">
-                  {actions.map(({ fields: { asButton, external, featured, href, label } }) => (
-                    <Link {featured} {external} btn={asButton} to={href}>
+                  {actions.map(({ fields: { asButton, external, featured, href, label, buttonType } }) => (
+                    <Link {featured} {external} btn={asButton} to={href} class:list={[buttonType]}>
                       {label}
                     </Link>
                   ))}
@@ -60,16 +62,17 @@ function getSeparationSymbol(arryaLength: number, index: number) {
             class="font-secondary w-full max-w-2xl pt-10 text-xl tracking-wide text-balance text-gray-300 lg:absolute lg:bottom-16 lg:left-8"
           >
             {
-              aboutMe?.map(({ fields: { featured, label, tag } }) => (
-                <Text {featured} as={tag}>
-                  {label}
-                </Text>
-              ))
+              aboutMe &&
+                aboutMe.map(({ fields: { featured, label, tag } }) => (
+                  <Text {featured} as={tag}>
+                    {label}
+                  </Text>
+                ))
             }
             {
-              currentlyLearning && (
-                <Text>
-                  I am currently learning{' '}
+              learningParagraph && currentlyLearning && (
+                <Text featured={learningParagraph.featured} as={learningParagraph.tag}>
+                  {learningParagraph.label}
                   {currentlyLearning.map(({ fields: { asButton, external, featured, href, label } }, index) => (
                     <>
                       <Link {featured} {external} btn={asButton} to={href}>
@@ -91,12 +94,12 @@ function getSeparationSymbol(arryaLength: number, index: number) {
               {
                 socials && (
                   <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 *:text-gray-300">
-                    {socials.map(({ fields: { external, href, iconName, label } }) => (
+                    {socials.map(({ fields: { external, href, icon, label } }) => (
                       <Link {external} to={href} title={label}>
-                        {iconName && (
+                        {icon && (
                           <Icon
                             size={32}
-                            name={iconName}
+                            name={icon.fields.name}
                             class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
                           />
                         )}

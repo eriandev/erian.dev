@@ -1,54 +1,63 @@
-import type { IconName } from 'virtual:icon'
+import type { ButtonProps, IconProps, ImageProps, TextProps } from '@/components/types'
 
 export interface PgMainContent {
   name: string
+  slug?: string
   headTitle: string
-  headDescription: string
   headLang: 'en' | 'es'
   headThemeColor: string
-  slug?: string
+  headDescription: string
   actions?: Array<{
     fields: {
-      name: string
       href: string
       label: string
       asButton: boolean
       external: boolean
       featured: boolean
+      image?: ImageProps
+      icon?: {
+        fields: Pick<IconProps, 'name'>
+      }
+      buttonType?: ButtonProps['styleType']
     }
   }>
   description?: Array<{
     fields: {
-      name: string
       label: string
-      tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'strong' | 'span' | 'p'
       featured: boolean
+      tag: TextProps['as']
     }
   }>
   currentlyLearning?: Array<{
     fields: {
-      name: string
       href: string
       label: string
       asButton: boolean
       external: boolean
       featured: boolean
+      image?: ImageProps
+      icon?: {
+        fields: Pick<IconProps, 'name'>
+      }
+      buttonType?: ButtonProps['styleType']
     }
   }>
   socials: Array<{
     fields: {
-      name: string
       href: string
-      label?: string
-      iconName?: IconName
+      label: string
       asButton: boolean
       external: boolean
       featured: boolean
+      image?: ImageProps
+      icon?: {
+        fields: Pick<IconProps, 'name'>
+      }
+      buttonType?: ButtonProps['styleType']
     }
   }>
   asideImage: {
     fields: {
-      name: string
       source: {
         fields: {
           title: string

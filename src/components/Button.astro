@@ -3,9 +3,9 @@ import type { ButtonProps } from '@/components/types'
 
 interface Props extends ButtonProps {}
 
-const { primary = false, secondary = false, class: extraClass, ...restProps } = Astro.props
+const { class: extraClass, styleType = 'primary', ...restProps } = Astro.props
 ---
 
-<button class:list={['btn', { primary, secondary }, extraClass]} {...restProps}>
+<button class:list={['btn', styleType, extraClass]} {...restProps}>
   <slot />
 </button>

@@ -4,8 +4,7 @@ import type { IconName } from 'virtual:icon'
 
 export interface ButtonProps extends HTMLAttributes<'button'> {
   id: string
-  primary?: boolean
-  secondary?: boolean
+  styleType: 'primary' | 'secondary'
 }
 
 export interface ContainerProps extends HTMLAttributes<'div'> {
