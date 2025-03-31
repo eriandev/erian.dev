@@ -26,10 +26,36 @@
 
 @font-face {
   font-family: 'Ubuntu Sans Mono';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/ubuntu-sans-mono-500.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Ubuntu Sans Mono';
   font-weight: 600;
   font-style: normal;
   font-display: swap;
   src: url('/fonts/ubuntu-sans-mono-600.woff2') format('woff2');
+}
+
+@utility badge-transition {
+  transition:
+    scale 300ms ease-in-out,
+    filter 600ms ease-in-out;
+}
+
+@utility drop-shine {
+  filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.05));
+
+  &:hover {
+    filter: drop-shadow(0px 0px 25px rgba(255, 255, 255, 0.15));
+  }
+}
+
+@utility shiny {
+  box-shadow: 4px 4px 20px 0px color-mix(in oklab, var(--color-white) 5%, transparent);
 }
 
 @theme {
@@ -48,7 +74,7 @@
 
 @layer components {
   .btn {
-    @apply font-secondary cursor-pointer px-12 py-3 leading-tight font-bold text-white;
+    @apply font-secondary cursor-pointer px-12 py-3 leading-tight font-semibold text-white;
     @apply border-primary rounded-md border-4 transition-[scale] duration-250 ease-in-out;
 
     &:hover {
@@ -74,9 +100,17 @@
   }
 
   .link.featured {
-    @apply text-primary relative inline-block leading-tight font-bold;
+    @apply text-primary relative inline-block leading-tight font-semibold;
     @apply before:from-primary before:to-secondary before:bg-linear-to-r;
     @apply before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0;
     @apply before:transition-[width] before:duration-300 before:ease-[ease] before:content-[''] hover:before:w-full;
+  }
+
+  .dark-x-gradient {
+    background-image: linear-gradient(90deg, #272f3a 0%, #2a3646 100%);
+  }
+
+  .dark-y-gradient {
+    background-image: linear-gradient(180deg, #13171c 0%, #202746 100%);
   }
 }

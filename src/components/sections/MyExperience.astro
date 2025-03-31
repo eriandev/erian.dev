@@ -1,0 +1,84 @@
+---
+import Text from '@/components/Text.astro'
+import Link from '@/components/Link.astro'
+import Image from '@/components/Image.astro'
+import JobCard from '@/components/JobCard.astro'
+import type { MyExperienceProps } from '@/components/sections/types'
+
+interface Props extends MyExperienceProps {
+  orderNumber: number
+}
+
+const { title, description, featuredItems, orderNumber, additional } = Astro.props
+const { as: titleTag, ...titleProps } = title.props
+const { as: descriptionTag, ...descriptionProps } = description.props
+const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
+---
+
+<section class="relative px-4 py-16 md:px-8 lg:mx-auto lg:grid lg:grid-cols-2 lg:gap-x-16 lg:py-32">
+  <article class="flex flex-col gap-y-4">
+    <Text as="span" class="font-primary text-lg font-semibold text-white xl:absolute xl:-left-10">
+      {orderNumberParsed}
+    </Text>
+    <Text as={titleTag} {...titleProps} class="font-primary text-5xl font-semibold">
+      {
+        title.parsed.map(({ featured, text }) =>
+          featured ? (
+            <Text featured as="span" class="pl-4">
+              {text}
+            </Text>
+          ) : (
+            text
+          ),
+        )
+      }
+    </Text>
+    <Text
+      as={descriptionTag}
+      {...descriptionProps}
+      class="font-primary text-base font-medium tracking-wide text-balance text-gray-400"
+    >
+      {
+        description.parsed.map(({ featured, text }) =>
+          featured ? (
+            <Text as="span" class="inline-block text-gray-200">
+              {text}
+            </Text>
+          ) : (
+            text
+          ),
+        )
+      }
+    </Text>
+    <div class="flex max-w-xl flex-wrap gap-x-2 gap-y-4">
+      {
+        featuredItems.map(({ link, image }) => (
+          <Link {...link}>
+            {image && (
+              <Image {...image} width={96} height={96} class="drop-shine badge-transition size-24 hover:scale-110" />
+            )}
+          </Link>
+        ))
+      }
+    </div>
+  </article>
+
+  {
+    additional && (
+      <div class="grid gap-y-14 pt-14 lg:pt-0">
+        {additional.data.map(({ jobs, year }) => (
+          <div class="grid gap-y-3 text-sm">
+            <Text as="span" class="font-secondary text-lg font-semibold">
+              {year}
+            </Text>
+            <div class="grid gap-y-5">
+              {jobs.map((job) => (
+                <JobCard {...job} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+</section>

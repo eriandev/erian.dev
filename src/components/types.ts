@@ -4,7 +4,7 @@ import type { IconName } from 'virtual:icon'
 
 export interface ButtonProps extends HTMLAttributes<'button'> {
   id: string
-  styleType: 'primary' | 'secondary'
+  styleType?: 'primary' | 'secondary'
 }
 
 export interface ContainerProps extends HTMLAttributes<'div'> {
@@ -25,6 +25,13 @@ export interface ImageProps extends ImgAttributes {
   width: number
   height: number
   lazy?: boolean
+}
+
+export interface JobCardProps {
+  title: string
+  subtitle: string
+  logo?: ImageProps
+  description?: string
 }
 
 export interface LinkProps extends Omit<HTMLAttributes<'a'>, 'href'> {

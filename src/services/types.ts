@@ -1,3 +1,4 @@
+import type { IdSection, MyExperienceProps } from '@/components/sections/types'
 import type { ButtonProps, IconProps, ImageProps, TextProps } from '@/components/types'
 
 export interface PgMainContent {
@@ -7,78 +8,146 @@ export interface PgMainContent {
   headLang: 'en' | 'es'
   headThemeColor: string
   headDescription: string
-  actions?: Array<{
-    fields: {
-      href: string
-      label: string
-      asButton: boolean
-      external: boolean
-      featured: boolean
-      image?: ImageProps
-      icon?: {
-        fields: Pick<IconProps, 'name'>
+  actions?: PgMainAction[]
+  description?: PgMainDescription[]
+  currentlyLearning?: PgMainCurrentlyLearning[]
+  socials: PgMainSocial[]
+  asideImage: PgMainAsideImage
+  sections?: PgMainSection[]
+}
+
+interface PgMainAction {
+  fields: {
+    href: string
+    label: string
+    asButton: boolean
+    external: boolean
+    featured: boolean
+    image?: ImageProps
+    icon?: {
+      fields: Pick<IconProps, 'name'>
+    }
+    buttonType?: ButtonProps['styleType']
+  }
+}
+
+interface PgMainDescription {
+  fields: {
+    label: string
+    featured: boolean
+    tag: TextProps['as']
+  }
+}
+
+interface PgMainCurrentlyLearning {
+  fields: {
+    href: string
+    label: string
+    asButton: boolean
+    external: boolean
+    featured: boolean
+    image?: ImageProps
+    icon?: {
+      fields: Pick<IconProps, 'name'>
+    }
+    buttonType?: ButtonProps['styleType']
+  }
+}
+
+interface PgMainSocial {
+  fields: {
+    href: string
+    label: string
+    asButton: boolean
+    external: boolean
+    featured: boolean
+    image?: ImageProps
+    icon?: {
+      fields: Pick<IconProps, 'name'>
+    }
+    buttonType?: ButtonProps['styleType']
+  }
+}
+
+interface PgMainAsideImage {
+  fields: {
+    source: {
+      fields: {
+        title: string
+        description: string
+        file: {
+          url: string
+          details: {
+            size: number
+            image: {
+              width: number
+              height: number
+            }
+          }
+          fileName: string
+          contentType: string
+        }
       }
-      buttonType?: ButtonProps['styleType']
     }
-  }>
-  description?: Array<{
-    fields: {
-      label: string
-      featured: boolean
-      tag: TextProps['as']
-    }
-  }>
-  currentlyLearning?: Array<{
-    fields: {
-      href: string
-      label: string
-      asButton: boolean
-      external: boolean
-      featured: boolean
-      image?: ImageProps
-      icon?: {
-        fields: Pick<IconProps, 'name'>
+    alt: string
+    title: string
+    width: number
+    height: number
+  }
+}
+
+interface PgMainSection {
+  fields: {
+    id: IdSection
+    title: {
+      fields: {
+        label: string
+        featured: boolean
+        tag: TextProps['as']
       }
-      buttonType?: ButtonProps['styleType']
     }
-  }>
-  socials: Array<{
-    fields: {
-      href: string
-      label: string
-      asButton: boolean
-      external: boolean
-      featured: boolean
-      image?: ImageProps
-      icon?: {
-        fields: Pick<IconProps, 'name'>
+    description: {
+      fields: {
+        label: string
+        featured: boolean
+        tag: TextProps['as']
       }
-      buttonType?: ButtonProps['styleType']
     }
-  }>
-  asideImage: {
-    fields: {
-      source: {
-        fields: {
-          title: string
-          description: string
-          file: {
-            url: string
-            details: {
-              size: number
-              image: {
-                width: number
-                height: number
+    featured: Array<{
+      fields: {
+        href: string
+        label: string
+        external: boolean
+        featured: boolean
+        asButton: boolean
+        image: {
+          fields: {
+            source: {
+              fields: {
+                title: string
+                description: string
+                file: {
+                  url: string
+                  details: {
+                    size: number
+                    image: {
+                      width: number
+                      height: number
+                    }
+                  }
+                  fileName: string
+                  contentType: string
+                }
               }
             }
-            fileName: string
-            contentType: string
+            alt: string
+            title: string
+            width: number
+            height: number
           }
         }
       }
-      alt: string
-      width: number
-      height: number
-    }
+    }>
+    additional: MyExperienceProps['additional']
   }
 }
