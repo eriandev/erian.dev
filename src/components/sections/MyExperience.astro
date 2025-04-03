@@ -55,7 +55,13 @@ const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
         featuredItems.map(({ link, image }) => (
           <Link {...link}>
             {image && (
-              <Image {...image} width={96} height={96} class="drop-shine badge-transition size-24 hover:scale-110" />
+              <Image
+                {...image}
+                width={96}
+                height={96}
+                src={`https:${image.src}`}
+                class="drop-shine badge-transition size-24 hover:scale-110"
+              />
             )}
           </Link>
         ))
