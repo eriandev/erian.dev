@@ -38,7 +38,7 @@ const { as: titleTag, ...titleProps } = title.props
           <Text {as} {...descriptionProps} class="font-primary text-base font-medium tracking-wide text-gray-400">
             {parsed.map(({ featured, text }) =>
               featured ? (
-                <Text as="span" class="inline-block text-gray-200">
+                <Text as="strong" class="inline-block text-gray-200">
                   {text}
                 </Text>
               ) : (
