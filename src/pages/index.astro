@@ -6,8 +6,7 @@ import Link from '@/components/Link.astro'
 import Image from '@/components/Image.astro'
 import Container from '@/components/Container.astro'
 import { getPgMainContent } from '@/services/contentful'
-
-import MyExperience from '@/components/sections/MyExperience.astro'
+import SectionsHandler from '@/components/sections/SectionHandler.astro'
 
 const {
   actions,
@@ -31,22 +30,6 @@ const asidePictureSource = `https:${asidePicture.source.fields.file.url}`
 function getSeparationSymbol(arryaLength: number, index: number) {
   return index < arryaLength - 2 ? ', ' : index === arryaLength - 2 ? ' & ' : ''
 }
-
-function parsedText(input: string): Array<{ text: string; featured: boolean }> {
-  const regex = /\*\*(.*?)\*\*/g
-  const parts = input.split(regex)
-
-  return parts.map((text, index) => ({
-    text,
-    featured: index % 2 === 1,
-  }))
-}
-
-const sectionsComponent = {
-  'about-me': MyExperience,
-  'my-experience': MyExperience,
-  'projects-made': MyExperience,
-} as const
 ---
 
 <Layout {lang} {title} {description} {themeColor} {slug}>
@@ -153,52 +136,6 @@ const sectionsComponent = {
       </div>
     </section>
 
-    <Container unlimited class="dark-y-gradient">
-      <Container
-        as="section"
-        class="relative py-16 before:top-0 before:bottom-16 before:left-0 before:w-0.75 before:bg-gradient-to-b before:from-transparent before:via-gray-500 before:to-transparent before:content-none xl:before:absolute xl:before:content-['']"
-      >
-        {
-          sections &&
-            sections.map(({ fields: { id, title, description, featured, additional } }, index) => {
-              const SectionComponent = sectionsComponent[id]
-              const parsedDescription = description.map(({ fields }) => ({
-                props: fields,
-                parsed: parsedText(fields.label),
-              }))
-              const parsedFeaturedItems = featured.map(({ fields }) => ({
-                link: {
-                  to: fields.href,
-                  btn: fields.asButton,
-                  external: fields.external,
-                  featured: fields.featured,
-                },
-                image: {
-                  lazy: true,
-                  alt: fields.image?.fields?.alt,
-                  title: fields.image?.fields?.title,
-                  width: fields.image?.fields?.width,
-                  height: fields.image?.fields?.height,
-                  src: fields.image?.fields.source.fields.file.url,
-                },
-              }))
-
-              return (
-                <SectionComponent
-                  {id}
-                  {additional}
-                  orderNumber={index + 1}
-                  title={{
-                    props: title.fields,
-                    parsed: parsedText(title.fields.label),
-                  }}
-                  description={parsedDescription}
-                  featuredItems={parsedFeaturedItems}
-                />
-              )
-            })
-        }
-      </Container>
-    </Container>
+    {sections && sections?.length > 0 && <SectionsHandler {sections} />}
   </Container>
 </Layout>

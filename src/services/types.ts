@@ -16,7 +16,7 @@ export interface PgMainContent {
   sections?: PgMainSection[]
 }
 
-interface PgMainAction {
+export interface PgMainAction {
   fields: {
     href: string
     label: string
@@ -31,7 +31,7 @@ interface PgMainAction {
   }
 }
 
-interface PgMainDescription {
+export interface PgMainDescription {
   fields: {
     label: string
     featured: boolean
@@ -39,7 +39,7 @@ interface PgMainDescription {
   }
 }
 
-interface PgMainCurrentlyLearning {
+export interface PgMainCurrentlyLearning {
   fields: {
     href: string
     label: string
@@ -54,7 +54,7 @@ interface PgMainCurrentlyLearning {
   }
 }
 
-interface PgMainSocial {
+export interface PgMainSocial {
   fields: {
     href: string
     label: string
@@ -69,7 +69,7 @@ interface PgMainSocial {
   }
 }
 
-interface PgMainAsideImage {
+export interface PgMainAsideImage {
   fields: {
     source: {
       fields: {
@@ -96,7 +96,7 @@ interface PgMainAsideImage {
   }
 }
 
-interface PgMainSection {
+export interface PgMainSection {
   fields: {
     id: IdSection
     title: {
