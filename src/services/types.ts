@@ -106,13 +106,13 @@ interface PgMainSection {
         tag: TextProps['as']
       }
     }
-    description: {
+    description: Array<{
       fields: {
         label: string
         featured: boolean
         tag: TextProps['as']
       }
-    }
+    }>
     featured: Array<{
       fields: {
         href: string

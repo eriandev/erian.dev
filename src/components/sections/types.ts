@@ -8,10 +8,10 @@ export interface SectionProps<T> {
     props: TextProps
     parsed: Array<{ text: string; featured: boolean }>
   }
-  description: {
+  description: Array<{
     props: TextProps
     parsed: Array<{ text: string; featured: boolean }>
-  }
+  }>
   featuredItems: Array<{
     link: LinkProps
     icon?: IconProps

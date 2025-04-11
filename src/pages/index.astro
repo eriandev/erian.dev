@@ -162,7 +162,11 @@ const sectionsComponent = {
           sections &&
             sections.map(({ fields: { id, title, description, featured, additional } }, index) => {
               const SectionComponent = sectionsComponent[id]
-              const parsedFeatured = featured.map(({ fields }) => ({
+              const parsedDescription = description.map(({ fields }) => ({
+                props: fields,
+                parsed: parsedText(fields.label),
+              }))
+              const parsedFeaturedItems = featured.map(({ fields }) => ({
                 link: {
                   to: fields.href,
                   btn: fields.asButton,
@@ -188,11 +192,8 @@ const sectionsComponent = {
                     props: title.fields,
                     parsed: parsedText(title.fields.label),
                   }}
-                  description={{
-                    props: description.fields,
-                    parsed: parsedText(description.fields.label),
-                  }}
-                  featuredItems={parsedFeatured}
+                  description={parsedDescription}
+                  featuredItems={parsedFeaturedItems}
                 />
               )
             })
