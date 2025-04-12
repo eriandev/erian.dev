@@ -49,21 +49,23 @@ const { as: titleTag, ...titleProps } = title.props
         ))
       }
     </div>
-    <div class="flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
-      {
-        featuredItems.map(({ link, image }) => (
-          <Link {...link}>
-            {image && (
-              <Image
-                {...image}
-                src={`https:${image.src}`}
-                class="drop-shine badge-transition size-24 hover:scale-110 lg:size-32"
-              />
-            )}
-          </Link>
-        ))
-      }
-    </div>
+    {
+      featuredItems && featuredItems.length > 0 && (
+        <div class="flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
+          {featuredItems.map(({ link, image }) => (
+            <Link {...link}>
+              {image && (
+                <Image
+                  {...image}
+                  src={`https:${image.src}`}
+                  class="drop-shine badge-transition size-24 hover:scale-110 lg:size-32"
+                />
+              )}
+            </Link>
+          ))}
+        </div>
+      )
+    }
   </article>
 
   {

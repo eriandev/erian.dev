@@ -1,5 +1,5 @@
-import type { IdSection, MyExperienceProps } from '@/components/sections/types'
 import type { ButtonProps, IconProps, ImageProps, TextProps } from '@/components/types'
+import type { AboutMeProps, IdSection, MyExperienceProps } from '@/components/sections/types'
 
 export interface PgMainContent {
   name: string
@@ -96,9 +96,14 @@ export interface PgMainAsideImage {
   }
 }
 
-export interface PgMainSection {
+export type PgMainSection =
+  | PgMainContentSection<'about-me', AboutMeProps['additional']>
+  | PgMainContentSection<'my-experience', MyExperienceProps['additional']>
+  | PgMainContentSection<'projects-made', MyExperienceProps['additional']>
+
+export interface PgMainContentSection<I extends IdSection, A = unknown> {
   fields: {
-    id: IdSection
+    id: I
     title: {
       fields: {
         label: string
@@ -148,6 +153,6 @@ export interface PgMainSection {
         }
       }
     }>
-    additional: MyExperienceProps['additional']
+    additional: A
   }
 }

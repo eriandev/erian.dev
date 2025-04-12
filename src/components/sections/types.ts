@@ -12,7 +12,7 @@ export interface SectionProps<T> {
     props: TextProps
     parsed: Array<{ text: string; featured: boolean }>
   }>
-  featuredItems: Array<{
+  featuredItems?: Array<{
     link: LinkProps
     icon?: IconProps
     image?: ImageProps
