@@ -1,0 +1,83 @@
+---
+import Text from '@/components/Text.astro'
+import Link from '@/components/Link.astro'
+import Image from '@/components/Image.astro'
+import GithubGraph from '@/components/GithubGraph.svelte'
+import type { AboutMeProps } from '@/components/sections/types'
+
+interface Props extends AboutMeProps {
+  orderNumber: number
+}
+
+const { title, description, featuredItems, orderNumber, additional } = Astro.props
+const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
+const { as: titleTag, ...titleProps } = title.props
+---
+
+<section class="relative px-4 py-16 md:px-8 lg:mx-auto lg:grid lg:grid-cols-2 lg:gap-x-16 lg:py-32">
+  <article class="flex flex-col gap-y-4">
+    <Text as="span" class="font-primary text-lg font-semibold text-white xl:absolute xl:-left-10">
+      {orderNumberParsed}
+    </Text>
+    <Text as={titleTag} {...titleProps} class="font-primary text-5xl font-semibold">
+      {
+        title.parsed.map(({ featured, text }) =>
+          featured ? (
+            <Text featured as="strong" class="pl-4">
+              {text}
+            </Text>
+          ) : (
+            text
+          ),
+        )
+      }
+    </Text>
+    <div class="grid gap-y-1">
+      {
+        description.map(({ parsed, props: { as, ...descriptionProps } }) => (
+          <Text {as} {...descriptionProps} class="font-primary text-base font-medium tracking-wide text-gray-400">
+            {parsed.map(({ featured, text }) =>
+              featured ? (
+                <Text as="strong" class="inline-block text-gray-200">
+                  {text}
+                </Text>
+              ) : (
+                text
+              ),
+            )}
+          </Text>
+        ))
+      }
+    </div>
+    {
+      featuredItems && featuredItems.length > 0 && (
+        <div class="flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
+          {featuredItems.map(({ link, image }) => (
+            <Link {...link}>
+              {image && (
+                <Image
+                  {...image}
+                  src={`https:${image.src}`}
+                  class="drop-shine badge-transition size-24 hover:scale-110 lg:size-32"
+                />
+              )}
+            </Link>
+          ))}
+        </div>
+      )
+    }
+  </article>
+
+  {
+    additional &&
+      (() => {
+        const { blockSize, iconSize, rows, spacing, decorations, label } = additional.data.techs
+
+        return (
+          <div class="pt-14 lg:pt-0">
+            <GithubGraph client:only="svelte" {rows} {label} {spacing} {iconSize} {blockSize} {decorations} />
+          </div>
+        )
+      })
+  }
+</section>

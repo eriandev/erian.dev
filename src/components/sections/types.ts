@@ -32,3 +32,21 @@ export type MyExperienceProps = SectionProps<{
     }>
   }>
 }>
+
+export type AboutMeProps = SectionProps<{
+  identifier: IdSection
+  data: {
+    techs: {
+      rows: number
+      label?: string
+      spacing: number
+      iconSize: number
+      blockSize: number
+      decorations?: Array<{
+        label: string
+        icon?: IconProps
+        background?: string
+      }>
+    }
+  }
+}>
