@@ -66,6 +66,12 @@
   --color-primary: #02abb2;
   --color-secondary: #5e79d1;
 
+  --color-graph-level-4: #39d353;
+  --color-graph-level-3: #26a641;
+  --color-graph-level-2: #006d32;
+  --color-graph-level-1: #0e4429;
+  --color-graph-level-0: #29323d;
+
   --text-title: clamp(2.25rem, 5vw, 4rem);
   --text-title--line-height: 1.2;
   --text-subtitle: clamp(0.875rem, 2vw, 1.5rem);
@@ -76,14 +82,7 @@
   .btn {
     @apply font-secondary cursor-pointer px-12 py-3 leading-tight font-semibold text-white;
     @apply border-primary rounded-md border-4 transition-[scale] duration-250 ease-in-out;
-
-    &:hover {
-      scale: 1.05;
-    }
-
-    &:active {
-      scale: 1;
-    }
+    @apply hover:scale-105 active:scale-1;
 
     &.primary {
       background-color: var(--color-primary);
