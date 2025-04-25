@@ -1,5 +1,5 @@
-import { join } from 'node:path'
-import { readdirSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
+import { join, relative } from 'node:path'
+import { readdirSync, existsSync, mkdirSync, writeFileSync, statSync } from 'node:fs'
 import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
 
 export const iconTyping = (): AstroIntegration => ({
@@ -11,12 +11,33 @@ export const iconTyping = (): AstroIntegration => ({
   },
 })
 
+function getAllSvgFiles(dir: string): string[] {
+  let results: string[] = []
+  const list = readdirSync(dir)
+
+  for (const file of list) {
+    const fullPath = join(dir, file)
+    const stat = statSync(fullPath)
+
+    if (stat.isDirectory()) {
+      results = results.concat(getAllSvgFiles(fullPath))
+    } else if (file.endsWith('.svg')) {
+      results.push(fullPath)
+    }
+  }
+
+  return results
+}
+
 function generateIconTypes(logger: AstroIntegrationLogger): void {
   try {
     const iconsDir = join(process.cwd(), 'src/icons')
-    const files = readdirSync(iconsDir)
-    const svgFiles = files.filter((file) => file.endsWith('.svg'))
-    const iconNames = svgFiles.map((file) => file.replace('.svg', ''))
+    const svgPaths = getAllSvgFiles(iconsDir)
+
+    const iconNames = svgPaths.map((fullPath) => {
+      const relativePath = relative(iconsDir, fullPath).replace(/\\/g, '/')
+      return relativePath.replace('.svg', '')
+    })
 
     const typeDefinitions = `declare module 'virtual:icon' {
   export type IconName =
