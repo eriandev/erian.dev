@@ -3,10 +3,12 @@ import Text from '@/components/Text.astro'
 import Image from '@/components/Image.astro'
 import Container from '@/components/Container.astro'
 import type { JobCardProps } from '@/components/types'
+import { undefined } from 'astro:schema'
 
 interface Props extends JobCardProps {}
 
 const { logo, subtitle, title, description } = Astro.props
+const descriptionParts = description?.split('—')
 ---
 
 <Container
@@ -16,12 +18,23 @@ const { logo, subtitle, title, description } = Astro.props
 >
   <div class="flex items-center gap-x-4 tracking-wide">
     {logo && <Image lazy {...logo} class="size-10 rounded-md" />}
-    <div>
-      <Text as="h4" class="text-primary text-base font-semibold">
+    <hgroup>
+      <Text as="h3" class="text-primary text-base font-semibold">
         {title}
       </Text>
       <Text>{subtitle}</Text>
-    </div>
+    </hgroup>
   </div>
-  {description && <Text>{description}</Text>}
+  {
+    description && (
+      <div class="flex flex-col-reverse gap-x-2 gap-y-1 sm:flex-row">
+        {descriptionParts?.map((part, index) => (
+          <>
+            <Text>{part}</Text>
+            {index === 0 ? <span class="hidden sm:block">—</span> : null}
+          </>
+        ))}
+      </div>
+    )
+  }
 </Container>
