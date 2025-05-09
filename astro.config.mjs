@@ -5,21 +5,16 @@ import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 import { iconTyping } from './src/config/integrations'
 
-const { BASE_PATH: site } = loadEnv(process.env.NODE_ENV, process.cwd(), '')
+const { PUBLIC_ORIGIN: site, PUBLIC_PROTOCOL: protocol } = loadEnv(process.env.NODE_ENV, process.cwd(), 'PUBLIC')
 
-// https://astro.build/config
 export default defineConfig({
   site,
-  integrations: [
-    icon(),
-    svelte(),
-    iconTyping()
-  ],
+  integrations: [icon(), svelte(), iconTyping()],
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
   image: {
     domains: ['images.ctfassets.net'],
-    remotePatterns: [{ protocol: 'https' }],
+    remotePatterns: [{ protocol }],
   },
 })

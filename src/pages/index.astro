@@ -4,8 +4,9 @@ import Icon from '@/components/Icon.astro'
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
 import Image from '@/components/Image.astro'
+import { PROTOCOL } from '@/utils/consts.ts'
 import Container from '@/components/Container.astro'
-import { getPgMainContent } from '@/services/contentful'
+import { getPgMainContent } from '@/services/contentful.ts'
 import SectionsHandler from '@/components/sections/SectionHandler.astro'
 
 const {
@@ -25,7 +26,7 @@ const {
 const { fields: asidePicture } = asideImage
 const aboutMe = descriptionParagraph?.slice(0, -1)
 const learningParagraph = descriptionParagraph?.slice(-1)[0]?.fields
-const asidePictureSource = `https:${asidePicture.source.fields.file.url}`
+const asidePictureSource = PROTOCOL + asidePicture.source.fields.file.url
 
 function getSeparationSymbol(arryaLength: number, index: number) {
   return index < arryaLength - 2 ? ', ' : index === arryaLength - 2 ? ' & ' : ''

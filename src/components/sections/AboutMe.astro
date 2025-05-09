@@ -2,8 +2,9 @@
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
 import Image from '@/components/Image.astro'
+import { PROTOCOL } from '@/utils/consts.ts'
 import GithubGraph from '@/components/GithubGraph.svelte'
-import type { AboutMeProps } from '@/components/sections/types'
+import type { AboutMeProps } from '@/components/sections/types.ts'
 
 interface Props extends AboutMeProps {
   orderNumber: number
@@ -57,7 +58,7 @@ const { as: titleTag, ...titleProps } = title.props
               {image && (
                 <Image
                   {...image}
-                  src={`https:${image.src}`}
+                  src={PROTOCOL + image.src}
                   class="drop-shine badge-transition size-24 hover:scale-110 lg:size-32"
                 />
               )}
