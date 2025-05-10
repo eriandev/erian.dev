@@ -12,6 +12,23 @@ export interface ContainerProps extends HTMLAttributes<'div'> {
   unlimited?: boolean
 }
 
+export interface Decoration {
+  label: string
+  icon?: IconProps
+  background?: string
+}
+
+export interface GithubGraphProps {
+  rows: number
+  label?: string
+  spacing: number
+  iconSize: number
+  blockSize: number
+  decorations?: Decoration[]
+  emptyBlockProbability?: number
+  greenBlockProbability?: number
+}
+
 export interface IconProps extends HTMLAttributes<'svg'> {
   name: IconName
   size?: number

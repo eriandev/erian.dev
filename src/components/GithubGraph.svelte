@@ -1,23 +1,6 @@
 <script lang="ts">
   import { InlineSvg } from '@usesvelte/inline-svg'
-  import type { IconProps } from '@/components/types'
-
-  type Decoration = {
-    label: string
-    icon?: IconProps
-    background?: string
-  }
-
-  interface Props {
-    rows: number
-    label?: string
-    spacing: number
-    iconSize: number
-    blockSize: number
-    decorations?: Array<Decoration>
-    emptyBlockProbability?: number
-    greenBlockProbability?: number
-  }
+  import type { Decoration, GithubGraphProps } from '@/components/types'
 
   const blockClasses = 'bg-graph-level-0/50 grid size-8 place-items-center rounded-lg'
   const colorClasses = [
@@ -35,7 +18,7 @@
     decorations = [],
     emptyBlockProbability = 0.4,
     greenBlockProbability = 0.5
-  }: Props = $props()
+  }: GithubGraphProps = $props()
 
   let containerWidth = $state<number>()
   let mutableDecorations = [...decorations]
