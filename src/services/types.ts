@@ -1,5 +1,5 @@
-import type { ButtonProps, IconProps, ImageProps, TextProps } from '@/components/types'
-import type { AboutMeProps, IdSection, MyExperienceProps } from '@/components/sections/types'
+import type { ButtonProps, IconProps, ImageProps, TextProps } from '@/components/types.ts'
+import type { AboutMeProps, IdSection, MyExperienceProps } from '@/components/sections/types.ts'
 
 export interface PgMainContent {
   name: string
@@ -97,9 +97,10 @@ export interface PgMainAsideImage {
 }
 
 export type PgMainSection =
-  | PgMainContentSection<'about-me', AboutMeProps['additional']>
-  | PgMainContentSection<'my-experience', MyExperienceProps['additional']>
-  | PgMainContentSection<'projects-made', MyExperienceProps['additional']>
+  | PgMainContentSection<IdSection.ABOUT_ME, AboutMeProps['additional']>
+  | PgMainContentSection<IdSection.MY_EXPERIENCE, MyExperienceProps['additional']>
+  | PgMainContentSection<IdSection.MY_EXPERIENCE_DETAILED, MyExperienceProps['additional']>
+  | PgMainContentSection<IdSection.PROJECTS_MADE, MyExperienceProps['additional']>
 
 export interface PgMainContentSection<I extends IdSection, A = unknown> {
   fields: {

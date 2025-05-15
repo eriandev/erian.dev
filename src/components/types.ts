@@ -45,10 +45,19 @@ export interface ImageProps extends ImgAttributes {
 }
 
 export interface JobCardProps {
-  title: string
-  subtitle: string
+  company: string
+  position: string
   logo?: ImageProps
   description?: string
+}
+
+export interface JobCardDetailedProps {
+  company: string
+  position: string
+  tags?: string[]
+  period?: string
+  logo?: ImageProps
+  description?: string[]
 }
 
 export interface LinkProps extends Omit<HTMLAttributes<'a'>, 'href'> {

@@ -1,0 +1,53 @@
+---
+import Text from '@/components/Text.astro'
+import Image from '@/components/Image.astro'
+import type { JobCardDetailedProps } from '@/components/types.ts'
+
+interface Props extends JobCardDetailedProps {}
+
+const { company, logo, period, position, description, tags } = Astro.props
+---
+
+<div class="flex flex-col gap-y-2.5 text-gray-300">
+  <header class="flex items-center gap-x-3">
+    {logo && <Image lazy {...logo} class="size-10 rounded-md" />}
+
+    <section>
+      {
+        period && (
+          <div class="font-secondary flex items-center gap-x-1 text-sm">
+            <Text as="span">{period}</Text>
+          </div>
+        )
+      }
+
+      <hgroup class="font-primary flex items-center gap-x-1.5">
+        <Text as="h3" class="text-xl font-semibold text-white">{position}</Text>
+        <Text as="span" class="font-secondary text-sm leading-none">at</Text>
+        <Text as="h4" class="text-primary text-lg font-semibold">{company}</Text>
+      </hgroup>
+    </section>
+  </header>
+
+  {
+    tags && (
+      <div class="font-primary flex flex-wrap gap-2 text-xs font-medium">
+        {tags.map((tag) => (
+          <Text as="span" class="rounded-xl border border-gray-600 px-2 py-0.5">
+            {tag}
+          </Text>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    description && (
+      <div class="font-secondary">
+        {description.map((paragraph) => (
+          <Text>{paragraph}</Text>
+        ))}
+      </div>
+    )
+  }
+</div>

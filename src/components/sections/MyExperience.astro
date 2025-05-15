@@ -4,7 +4,8 @@ import Link from '@/components/Link.astro'
 import Image from '@/components/Image.astro'
 import { PROTOCOL } from '@/utils/consts.ts'
 import JobCard from '@/components/JobCard.astro'
-import type { MyExperienceProps } from '@/components/sections/types.ts'
+import JobCardDetailed from '@/components/JobCardDetailed.astro'
+import { IdSection, type MyExperienceProps } from '@/components/sections/types.ts'
 
 interface Props extends MyExperienceProps {
   orderNumber: number
@@ -70,7 +71,7 @@ const { as: titleTag, ...titleProps } = title.props
   </article>
 
   {
-    additional && (
+    additional && additional.identifier === IdSection.MY_EXPERIENCE && (
       <div class="grid gap-y-14 pt-14 lg:pt-0">
         {additional.data.map(({ jobs, year }) => (
           <div class="grid gap-y-3 text-sm">
@@ -83,6 +84,16 @@ const { as: titleTag, ...titleProps } = title.props
               ))}
             </div>
           </div>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    additional && additional.identifier === IdSection.MY_EXPERIENCE_DETAILED && (
+      <div class="grid gap-y-10 pt-14 lg:pt-0">
+        {additional.data.map((job) => (
+          <JobCardDetailed {...job} />
         ))}
       </div>
     )

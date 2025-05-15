@@ -2,7 +2,8 @@
 import Container from '@/components/Container.astro'
 import AboutMe from '@/components/sections/AboutMe.astro'
 import MyExperience from '@/components/sections/MyExperience.astro'
-import type { PgMainSection } from '@/services/types'
+import { IdSection } from '@/components/sections/types.ts'
+import type { PgMainSection } from '@/services/types.ts'
 
 interface Props {
   sections: PgMainSection[]
@@ -49,7 +50,7 @@ function parsedText(input: string): Array<{ text: string; featured: boolean }> {
           },
         }))
 
-        if (id === 'about-me')
+        if (id === IdSection.ABOUT_ME)
           return (
             <AboutMe
               {id}
@@ -64,7 +65,7 @@ function parsedText(input: string): Array<{ text: string; featured: boolean }> {
             />
           )
 
-        if (id === 'my-experience')
+        if (id === IdSection.MY_EXPERIENCE || id === IdSection.MY_EXPERIENCE_DETAILED)
           return (
             <MyExperience
               {id}
