@@ -21,10 +21,10 @@ const { company, logo, period, position, description, tags } = Astro.props
         )
       }
 
-      <hgroup class="font-primary flex items-center gap-x-1.5">
+      <hgroup class="font-primary flex flex-col items-start gap-x-1.5 sm:flex-row sm:items-center">
         <Text as="h3" class="text-xl font-semibold text-white">{position}</Text>
-        <Text as="span" class="font-secondary text-sm leading-none">at</Text>
-        <Text as="h4" class="text-primary text-lg font-semibold">{company}</Text>
+        <Text as="span" class="font-secondary hidden text-sm leading-none sm:block">at</Text>
+        <Text as="h4" class="text-primary font-semibold lg:text-lg">{company}</Text>
       </hgroup>
     </section>
   </header>
