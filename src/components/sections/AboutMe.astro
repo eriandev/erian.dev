@@ -2,8 +2,8 @@
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
 import Image from '@/components/Image.astro'
-import { PROTOCOL } from '@/utils/consts.ts'
 import GithubGraph from '@/components/GithubGraph.svelte'
+import { parsedText } from '@/utils/contentful/normalization.ts'
 import type { AboutMeProps } from '@/components/sections/types.ts'
 
 interface Props extends AboutMeProps {
@@ -12,7 +12,6 @@ interface Props extends AboutMeProps {
 
 const { title, description, featuredItems, orderNumber, additional } = Astro.props
 const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
-const { as: titleTag, ...titleProps } = title.props
 ---
 
 <section class="relative px-4 py-16 md:px-8 lg:mx-auto lg:grid lg:grid-cols-2 lg:gap-x-16 lg:py-32">
@@ -22,49 +21,52 @@ const { as: titleTag, ...titleProps } = title.props
         <Text as="span" class="font-primary text-lg font-semibold text-white xl:absolute xl:-left-18">
           {orderNumberParsed}
         </Text>
-        <Text as={titleTag} {...titleProps} class="font-primary text-5xl font-semibold">
-          {
-            title.parsed.map(({ featured, text }) =>
-              featured ? (
-                <Text featured as="strong" class="pl-4">
-                  {text}
-                </Text>
-              ) : (
-                text
-              ),
-            )
-          }
-        </Text>
+        {
+          title.label && (
+            <Text {...title} class="font-primary text-5xl font-semibold">
+              {title.parse
+                ? parsedText(title.label).map(({ featured, text }) =>
+                    featured ? (
+                      <Text featured as="strong" class="pl-4">
+                        {text}
+                      </Text>
+                    ) : (
+                      text
+                    ),
+                  )
+                : title.label}
+            </Text>
+          )
+        }
       </hgroup>
       <div class="grid gap-y-1">
         {
-          description.map(({ parsed, props: { as, ...descriptionProps } }) => (
-            <Text {as} {...descriptionProps} class="font-primary text-base font-medium tracking-wide text-gray-400">
-              {parsed.map(({ featured, text }) =>
-                featured ? (
-                  <Text as="strong" class="inline-block text-gray-200">
-                    {text}
-                  </Text>
-                ) : (
-                  text
-                ),
-              )}
-            </Text>
-          ))
+          description.map(
+            (desc) =>
+              desc.label && (
+                <Text {...desc} class="font-primary text-base font-medium tracking-wide text-gray-400">
+                  {desc.parse
+                    ? parsedText(desc.label).map(({ featured, text }) =>
+                        featured ? (
+                          <Text as="strong" class="inline-block text-gray-200">
+                            {text}
+                          </Text>
+                        ) : (
+                          text
+                        ),
+                      )
+                    : desc.label}
+                </Text>
+              ),
+          )
         }
       </div>
       {
-        featuredItems && featuredItems.length > 0 && (
+        featuredItems.length > 0 && (
           <div class="flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
-            {featuredItems.map(({ link, image }) => (
-              <Link {...link}>
-                {image && (
-                  <Image
-                    {...image}
-                    src={PROTOCOL + image.src}
-                    class="drop-shine badge-transition size-24 hover:scale-110 lg:size-32"
-                  />
-                )}
+            {featuredItems.map(({ to, external, featured, image }) => (
+              <Link {to} {external} {featured}>
+                {image && <Image {...image} class="drop-shine badge-transition size-24 hover:scale-110 lg:size-32" />}
               </Link>
             ))}
           </div>

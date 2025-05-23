@@ -4,36 +4,22 @@ import Icon from '@/components/Icon.astro'
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
 import Image from '@/components/Image.astro'
-import { PROTOCOL } from '@/utils/consts.ts'
 import Container from '@/components/Container.astro'
 import { getPgMainContent } from '@/services/contentful.ts'
 import SectionsHandler from '@/components/sections/SectionHandler.astro'
 
-const {
-  actions,
-  asideImage,
-  currentlyLearning,
-  description: descriptionParagraph,
-  headDescription: description,
-  headLang: lang,
-  headThemeColor: themeColor,
-  headTitle: title,
-  sections,
-  slug,
-  socials,
-} = await getPgMainContent()
+const { actions, currentlyLearning, description, head, sections, socials, asideImage, footer } =
+  await getPgMainContent()
 
-const { fields: asidePicture } = asideImage
-const aboutMe = descriptionParagraph?.slice(0, -1)
-const learningParagraph = descriptionParagraph?.slice(-1)[0]?.fields
-const asidePictureSource = PROTOCOL + asidePicture.source.fields.file.url
+const aboutMe = description?.slice(0, -1)
+const learningParagraph = description?.slice(-1)[0]
 
 function getSeparationSymbol(arryaLength: number, index: number) {
   return index < arryaLength - 2 ? ', ' : index === arryaLength - 2 ? ' & ' : ''
 }
 ---
 
-<Layout {lang} {title} {description} {themeColor} {slug}>
+<Layout {...head}>
   <Container unlimited as="main">
     <section class="lg:overflow-hidden">
       <div
@@ -49,8 +35,8 @@ function getSeparationSymbol(arryaLength: number, index: number) {
             {
               actions && (
                 <footer class="mt-6 flex flex-wrap gap-4 md:gap-8">
-                  {actions.map(({ fields: { asButton, external, featured, href, label, buttonType } }) => (
-                    <Link {featured} {external} btn={asButton} to={href} class:list={[buttonType]}>
+                  {actions.map(({ to, btn, external, featured, btnVariant, label }) => (
+                    <Link {to} {btn} {external} {featured} class:list={[btnVariant]}>
                       {label}
                     </Link>
                   ))}
@@ -64,23 +50,14 @@ function getSeparationSymbol(arryaLength: number, index: number) {
             as="article"
             class="font-secondary w-full max-w-2xl pt-10 text-xl tracking-wide text-balance text-gray-300 lg:absolute lg:bottom-16 lg:left-8"
           >
-            {
-              aboutMe &&
-                aboutMe.map(({ fields: { featured, label, tag } }) => (
-                  <Text {featured} as={tag}>
-                    {label}
-                  </Text>
-                ))
-            }
+            {aboutMe && aboutMe.map(({ label, ...aboutMeProps }) => <Text {...aboutMeProps}>{label}</Text>)}
             {
               learningParagraph && currentlyLearning && (
-                <Text featured={learningParagraph.featured} as={learningParagraph.tag}>
+                <Text {...learningParagraph}>
                   {learningParagraph.label}
-                  {currentlyLearning.map(({ fields: { asButton, external, featured, href, label } }, index) => (
+                  {currentlyLearning.map(({ label, ...currentlyLearningProps }, index) => (
                     <>
-                      <Link {featured} {external} btn={asButton} to={href}>
-                        {label}
-                      </Link>
+                      <Link {...currentlyLearningProps}>{label}</Link>
                       {getSeparationSymbol(currentlyLearning.length, index)}
                     </>
                   ))}
@@ -97,12 +74,12 @@ function getSeparationSymbol(arryaLength: number, index: number) {
               {
                 socials && (
                   <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 *:text-gray-300">
-                    {socials.map(({ fields: { external, href, icon, label } }) => (
-                      <Link {external} to={href} title={label}>
+                    {socials.map(({ icon, ...socialProps }) => (
+                      <Link {...socialProps}>
                         {icon && (
                           <Icon
                             size={32}
-                            name={icon.fields.name}
+                            name={icon.name}
                             class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
                           />
                         )}
@@ -119,13 +96,13 @@ function getSeparationSymbol(arryaLength: number, index: number) {
                       height={440}
                       src="/images/green-glow.webp"
                       class="absolute inset-0 -top-4/6 h-[820px] w-full"
-                      alt={`Green glow that serves as an areola for the '${asidePicture.alt}' image`}
+                      alt={`Green glow that serves as an areola for the '${asideImage.alt}'`}
                     />
                     <Image
-                      alt={asidePicture.alt}
-                      src={asidePictureSource}
-                      width={asidePicture.width}
-                      height={asidePicture.height}
+                      alt={asideImage.alt}
+                      src={asideImage.src}
+                      width={asideImage.width}
+                      height={asideImage.height}
                       class="relative h-full w-full"
                     />
                   </aside>

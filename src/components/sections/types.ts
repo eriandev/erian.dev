@@ -9,19 +9,9 @@ export const enum IdSection {
 
 export interface SectionProps<T> {
   id: IdSection
-  title: {
-    props: TextProps
-    parsed: Array<{ text: string; featured: boolean }>
-  }
-  description: Array<{
-    props: TextProps
-    parsed: Array<{ text: string; featured: boolean }>
-  }>
-  featuredItems?: Array<{
-    link: LinkProps
-    icon?: IconProps
-    image?: ImageProps
-  }>
+  title: TextProps
+  description: TextProps[]
+  featuredItems: LinkProps[]
   additional?: T
 }
 

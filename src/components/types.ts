@@ -4,7 +4,8 @@ import type { IconName } from 'virtual:icon'
 
 export interface ButtonProps extends HTMLAttributes<'button'> {
   id: string
-  styleType?: 'primary' | 'secondary'
+  label: string
+  variant?: 'primary' | 'secondary'
 }
 
 export interface ContainerProps extends HTMLAttributes<'div'> {
@@ -18,6 +19,11 @@ export interface Decoration {
   background?: string
 }
 
+export interface FooterProps {
+  announcement: ModalProps
+  socials: LinkProps[]
+}
+
 export interface GithubGraphProps {
   rows: number
   label?: string
@@ -27,6 +33,14 @@ export interface GithubGraphProps {
   decorations?: Decoration[]
   emptyBlockProbability?: number
   greenBlockProbability?: number
+}
+
+export interface HeadProps {
+  lang: 'en' | 'es'
+  slug?: string
+  title: string
+  description: string
+  themeColor?: string
 }
 
 export interface IconProps extends HTMLAttributes<'svg'> {
@@ -65,6 +79,16 @@ export interface LinkProps extends Omit<HTMLAttributes<'a'>, 'href'> {
   btn?: boolean
   external?: boolean
   featured?: boolean
+  label?: string
+  icon?: IconProps
+  image?: ImageProps
+  btnVariant?: ButtonProps['variant']
+}
+
+export interface ModalProps {
+  title: TextProps
+  content: TextProps
+  action: LinkProps
 }
 
 export interface NavbarProps {
@@ -73,6 +97,8 @@ export interface NavbarProps {
 }
 
 export interface TextProps extends HTMLAttributes<'p'> {
-  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'strong' | 'span' | 'p'
+  label?: string
+  parse?: boolean
   featured?: boolean
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'strong' | 'span' | 'p'
 }
