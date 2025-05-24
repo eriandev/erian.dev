@@ -1,0 +1,74 @@
+---
+import Icon from '@/components/Icon.astro'
+import Link from '@/components/Link.astro'
+import Text from '@/components/Text.astro'
+import Container from '@/components/Container.astro'
+import type { FooterProps } from '@/components/types.ts'
+
+interface Props extends FooterProps {}
+
+const { announcement, socials } = Astro.props
+---
+
+<Container
+  unlimited
+  as="footer"
+  class:list={['bg-primary relative w-full pb-8', { 'pt-[202px] sm:pt-[178px] lg:pt-[104px]': announcement != null }]}
+>
+  <Container
+    as="section"
+    class="absolute top-0 right-0 left-0 -mt-[202px] px-4 sm:-mt-[178px] md:px-8 lg:-mt-[104px] xl:px-0"
+  >
+    {
+      announcement && (
+        <Container
+          unlimited
+          as="article"
+          class="border-primary font-secondary mx-auto grid gap-y-8 rounded-2xl border-4 bg-gray-800 px-8 py-16 text-center lg:grid-cols-[fit-content(100%)_auto_fit-content(100%)] lg:items-center lg:gap-x-4 xl:gap-x-12 xl:px-16"
+        >
+          <Text {...announcement.title} class="text-4xl font-bold">
+            {announcement.title.label}
+          </Text>
+          <Text {...announcement.content} class="mx-auto max-w-xl text-pretty">
+            {announcement.content.label}
+          </Text>
+          <Link
+            {...announcement.action}
+            class="border-primary font-secondary rounded-full border-4 px-12 py-4 text-lg font-bold"
+          >
+            {announcement.action.label}
+          </Link>
+        </Container>
+      )
+    }
+  </Container>
+
+  <Container as="section" class="grid gap-y-16 pt-16">
+    {
+      socials.length > 0 && (
+        <ul class="flex justify-center gap-x-10">
+          {socials.map(({ icon, ...socialProps }) => (
+            <li>
+              <Link {...socialProps} class="grid size-16 place-items-center rounded-full border-2 border-white">
+                {icon && <Icon size={32} name={icon.name} style={icon.style} />}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <Container unlimited as="article" class="grid gap-y-2">
+      <div class="flex flex-col items-center justify-center gap-x-2 sm:flex-row">
+        <Text as="span" class="font-secondary">Made with</Text>
+        <Link external to="https://astro.build">
+          <Icon name="brands/astro" width={132} height={44} />
+        </Link>
+        <Text as="span" class="font-secondary">and</Text>
+        <Link external to="https://tailwindcss.com" class="pt-3 sm:pt-0">
+          <Icon name="brands/tailwindcss" width={175} height={22} />
+        </Link>
+      </div>
+    </Container>
+  </Container>
+</Container>

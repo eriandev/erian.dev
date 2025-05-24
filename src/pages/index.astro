@@ -4,6 +4,7 @@ import Icon from '@/components/Icon.astro'
 import Text from '@/components/Text.astro'
 import Link from '@/components/Link.astro'
 import Image from '@/components/Image.astro'
+import Footer from '@/components/Footer.astro'
 import Container from '@/components/Container.astro'
 import { getPgMainContent } from '@/services/contentful.ts'
 import SectionsHandler from '@/components/sections/SectionHandler.astro'
@@ -13,6 +14,7 @@ const { actions, currentlyLearning, description, head, sections, socials, asideI
 
 const aboutMe = description?.slice(0, -1)
 const learningParagraph = description?.slice(-1)[0]
+const haveFooterAnnouncement = footer?.announcement != null
 
 function getSeparationSymbol(arryaLength: number, index: number) {
   return index < arryaLength - 2 ? ', ' : index === arryaLength - 2 ? ' & ' : ''
@@ -114,6 +116,12 @@ function getSeparationSymbol(arryaLength: number, index: number) {
       </div>
     </section>
 
-    {sections && sections?.length > 0 && <SectionsHandler {sections} />}
+    {
+      sections && sections?.length > 0 && (
+        <SectionsHandler {sections} class={haveFooterAnnouncement ? 'pb-40 lg:pb-24' : undefined} />
+      )
+    }
+
+    {footer && <Footer {...footer} />}
   </Container>
 </Layout>

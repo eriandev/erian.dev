@@ -20,7 +20,7 @@ export interface Decoration {
 }
 
 export interface FooterProps {
-  announcement: ModalProps
+  announcement?: ModalProps
   socials: LinkProps[]
 }
 
@@ -46,6 +46,7 @@ export interface HeadProps {
 export interface IconProps extends HTMLAttributes<'svg'> {
   name: IconName
   size?: number
+  style?: string
   width?: number
   height?: number
 }

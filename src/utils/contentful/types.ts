@@ -50,6 +50,7 @@ export type ContentfulAtButton = WithContentfulAggregations<{
 export type ContentfulAtIcon = WithContentfulAggregations<{
   internal: string
   name: string
+  style?: string
 }>
 
 export type ContentfulAtImage = WithContentfulAggregations<{
@@ -113,7 +114,7 @@ export type ContentfulMlModal = WithContentfulAggregations<{
 
 export type ContentfulOrFooter = WithContentfulAggregations<{
   internal: string
-  announcement: ContentfulMlModal
+  announcement?: ContentfulMlModal
   socials?: ContentfulAtLink[]
 }>
 

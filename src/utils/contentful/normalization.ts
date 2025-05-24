@@ -45,10 +45,11 @@ export function normalizeAtButton({ fields }: ContentfulAtButton): ButtonProps {
 }
 
 export function normalizeAtIcon({ fields }: ContentfulAtIcon): IconProps {
-  const { name } = fields
+  const { name, style } = fields
 
   return {
     name: name as IconProps['name'],
+    style,
   }
 }
 
@@ -116,7 +117,7 @@ export function normalizeOrFooter({ fields }: ContentfulOrFooter): FooterProps {
   const { announcement, socials } = fields
 
   return {
-    announcement: normalizeMlModal(announcement),
+    announcement: announcement != null ? normalizeMlModal(announcement) : undefined,
     socials: socials?.map((social) => normalizeAtLink(social)) ?? [],
   }
 }

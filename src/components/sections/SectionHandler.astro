@@ -6,24 +6,25 @@ import MyExperience from '@/components/sections/MyExperience.astro'
 import type { PgMainSection } from '@/services/types.ts'
 
 interface Props {
+  class?: string
   sections: PgMainSection[]
 }
 
-const { sections } = Astro.props
+const { sections, class: extraClass } = Astro.props
 ---
 
-<Container unlimited class="dark-y-gradient">
+<Container unlimited class:list={['dark-y-gradient', extraClass]}>
   <Container
     as="section"
     class="relative py-16 before:top-0 before:bottom-16 before:left-0 before:w-0.75 before:bg-gradient-to-b before:from-transparent before:via-gray-500 before:to-transparent before:content-none xl:before:absolute xl:before:content-['']"
   >
     {
       sections.map(({ description, featuredItems, id, title, additional }, index) => {
-        if (id === IdSection.ABOUT_ME)
-          return <AboutMe {id} {title} {additional} {description} {featuredItems} orderNumber={index + 1} />
+        const sectionProps = { id, title, description, featuredItems, orderNumber: index + 1 }
 
+        if (id === IdSection.ABOUT_ME) return <AboutMe {...sectionProps} {additional} />
         if (id === IdSection.MY_EXPERIENCE || id === IdSection.MY_EXPERIENCE_DETAILED)
-          return <MyExperience {id} {title} {additional} {description} {featuredItems} orderNumber={index + 1} />
+          return <MyExperience {...sectionProps} {additional} />
       })
     }
   </Container>
