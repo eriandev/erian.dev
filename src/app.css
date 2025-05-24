@@ -58,6 +58,14 @@
   box-shadow: 4px 4px 20px 0px color-mix(in oklab, var(--color-white) 5%, transparent);
 }
 
+@utility dark-x-gradient {
+  background-image: linear-gradient(90deg, #272f3a 0%, #2a3646 100%);
+}
+
+@utility dark-y-gradient {
+  background-image: linear-gradient(180deg, #13171c 0%, #202746 100%);
+}
+
 @theme {
   --breakpoint-sm: 36rem;
   --breakpoint-md: 48rem;
@@ -85,17 +93,12 @@
 
 @layer components {
   .btn {
-    @apply font-secondary cursor-pointer px-12 py-3 leading-tight font-semibold text-white;
-    @apply border-primary rounded-md border-4 transition-[scale] duration-250 ease-in-out;
-    @apply hover:scale-105 active:scale-1;
+    @apply font-secondary cursor-pointer px-12 py-4 text-lg leading-none font-semibold text-white;
+    @apply border-primary rounded-full border-4 transition-[scale] duration-250 ease-in-out;
+    @apply hover:scale-105 active:scale-100;
 
     &.primary {
-      background-color: var(--color-primary);
-    }
-
-    &.secondary {
-      border-color: --alpha(var(--color-primary) / 40%);
-      background-color: --alpha(var(--color-primary) / 10%);
+      @apply bg-primary;
     }
   }
 
@@ -108,13 +111,5 @@
     @apply before:from-primary before:to-secondary before:bg-linear-to-r;
     @apply before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0;
     @apply before:transition-[width] before:duration-300 before:ease-[ease] before:content-[''] hover:before:w-full;
-  }
-
-  .dark-x-gradient {
-    background-image: linear-gradient(90deg, #272f3a 0%, #2a3646 100%);
-  }
-
-  .dark-y-gradient {
-    background-image: linear-gradient(180deg, #13171c 0%, #202746 100%);
   }
 }

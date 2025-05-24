@@ -5,7 +5,7 @@ import type { IconName } from 'virtual:icon'
 export interface ButtonProps extends HTMLAttributes<'button'> {
   id: string
   label: string
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary'
 }
 
 export interface ContainerProps extends HTMLAttributes<'div'> {

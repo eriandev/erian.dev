@@ -37,8 +37,8 @@ function getSeparationSymbol(arryaLength: number, index: number) {
             {
               actions && (
                 <footer class="mt-6 flex flex-wrap gap-4 md:gap-8">
-                  {actions.map(({ to, btn, external, featured, btnVariant, label }) => (
-                    <Link {to} {btn} {external} {featured} class:list={[btnVariant]}>
+                  {actions.map(({ btnVariant, label, ...actionProps }) => (
+                    <Link {...actionProps} class={btnVariant}>
                       {label}
                     </Link>
                   ))}

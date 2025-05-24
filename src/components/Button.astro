@@ -1,11 +1,11 @@
 ---
-import type { ButtonProps } from '@/components/types'
+import type { ButtonProps } from '@/components/types.ts'
 
 interface Props extends ButtonProps {}
 
-const { class: extraClass, styleType = 'primary', ...restProps } = Astro.props
+const { class: extraClass, variant, ...restProps } = Astro.props
 ---
 
-<button class:list={['btn', styleType, extraClass]} {...restProps}>
+<button class:list={['btn', variant, extraClass]} {...restProps}>
   <slot />
 </button>

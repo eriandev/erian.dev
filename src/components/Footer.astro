@@ -32,12 +32,7 @@ const { announcement, socials } = Astro.props
           <Text {...announcement.content} class="mx-auto max-w-xl text-pretty">
             {announcement.content.label}
           </Text>
-          <Link
-            {...announcement.action}
-            class="border-primary font-secondary rounded-full border-4 px-12 py-4 text-lg font-bold"
-          >
-            {announcement.action.label}
-          </Link>
+          <Link {...announcement.action}>{announcement.action.label}</Link>
         </Container>
       )
     }
