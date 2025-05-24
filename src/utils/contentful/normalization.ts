@@ -131,7 +131,7 @@ export function normalizeOrSection({ fields }: ContentfulOrSection): PgMainSecti
     description: description?.map((text) => normalizeAtText(text)) ?? [],
     featuredItems: featured?.map((feat) => normalizeAtLink(feat)) ?? [],
     additional: additional as PgMainSection['additional'],
-  }
+  } as PgMainSection
 }
 
 // eslint-disable-next-line complexity -- Necessary to map the object
