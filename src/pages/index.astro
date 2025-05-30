@@ -1,10 +1,6 @@
 ---
 import Layout from '@/app.astro'
-import Icon from '@/components/Icon.astro'
-import Text from '@/components/Text.astro'
-import Link from '@/components/Link.astro'
-import Image from '@/components/Image.astro'
-import Footer from '@/components/Footer.astro'
+import Hero from '@/components/Hero.astro'
 import Container from '@/components/Container.astro'
 import { getPgMainContent } from '@/services/contentful.ts'
 import SectionsHandler from '@/components/sections/SectionHandler.astro'
@@ -12,116 +8,17 @@ import SectionsHandler from '@/components/sections/SectionHandler.astro'
 const { actions, currentlyLearning, description, head, sections, socials, asideImage, footer } =
   await getPgMainContent()
 
-const aboutMe = description?.slice(0, -1)
-const learningParagraph = description?.slice(-1)[0]
 const haveFooterAnnouncement = footer?.announcement != null
-
-function getSeparationSymbol(arryaLength: number, index: number) {
-  return index < arryaLength - 2 ? ', ' : index === arryaLength - 2 ? ' & ' : ''
-}
 ---
 
-<Layout {...head}>
+<Layout {...head} {footer}>
   <Container unlimited as="main">
-    <section class="lg:overflow-hidden">
-      <div
-        class="relative mx-auto flex max-h-[60rem] max-w-6xl grid-cols-3 flex-col gap-8 gap-y-16 px-4 py-16 md:px-8 lg:grid lg:h-screen lg:pt-40 xl:pt-64"
-      >
-        <section class="col-span-2 lg:pb-24">
-          <article>
-            <header>
-              <Text as="h1" class="font-primary text-title max-w-[36rem] font-semibold text-balance lg:max-w-none">
-                <Text featured as="strong">Erick Vargas</Text> Frontend developer.
-              </Text>
-            </header>
-            {
-              actions && (
-                <footer class="mt-6 flex flex-wrap gap-4 md:gap-8">
-                  {actions.map(({ btnVariant, label, ...actionProps }) => (
-                    <Link {...actionProps} class={btnVariant}>
-                      {label}
-                    </Link>
-                  ))}
-                </footer>
-              )
-            }
-          </article>
-
-          <Container
-            unlimited
-            as="article"
-            class="font-secondary w-full max-w-2xl pt-10 text-xl tracking-wide text-balance text-gray-300 lg:absolute lg:bottom-16 lg:left-8"
-          >
-            {aboutMe && aboutMe.map(({ label, ...aboutMeProps }) => <Text {...aboutMeProps}>{label}</Text>)}
-            {
-              learningParagraph && currentlyLearning && (
-                <Text {...learningParagraph}>
-                  {learningParagraph.label}
-                  {currentlyLearning.map(({ label, ...currentlyLearningProps }, index) => (
-                    <>
-                      <Link {...currentlyLearningProps}>{label}</Link>
-                      {getSeparationSymbol(currentlyLearning.length, index)}
-                    </>
-                  ))}
-                </Text>
-              )
-            }
-          </Container>
-        </section>
-        <section class="relative">
-          <div
-            class="hidden h-full w-full min-w-[460px] flex-col gap-4 sm:min-w-[660px] lg:absolute lg:top-64 lg:block lg:min-w-[1150px]"
-          >
-            <div class="flex">
-              {
-                socials && (
-                  <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 *:text-gray-300">
-                    {socials.map(({ icon, ...socialProps }) => (
-                      <Link {...socialProps}>
-                        {icon && (
-                          <Icon
-                            size={32}
-                            name={icon.name}
-                            class="relative transition-[scale] duration-300 ease-in-out hover:scale-125"
-                          />
-                        )}
-                      </Link>
-                    ))}
-                  </section>
-                )
-              }
-              {
-                asideImage && (
-                  <aside>
-                    <Image
-                      width={444}
-                      height={440}
-                      src="/images/green-glow.webp"
-                      class="absolute inset-0 -top-4/6 h-[820px] w-full"
-                      alt={`Green glow that serves as an areola for the '${asideImage.alt}'`}
-                    />
-                    <Image
-                      alt={asideImage.alt}
-                      src={asideImage.src}
-                      width={asideImage.width}
-                      height={asideImage.height}
-                      class="relative h-full w-full"
-                    />
-                  </aside>
-                )
-              }
-            </div>
-          </div>
-        </section>
-      </div>
-    </section>
+    <Hero {actions} {currentlyLearning} {description} {socials} {asideImage} />
 
     {
       sections && sections?.length > 0 && (
         <SectionsHandler {sections} class={haveFooterAnnouncement ? 'pb-40 lg:pb-24' : undefined} />
       )
     }
-
-    {footer && <Footer {...footer} />}
   </Container>
 </Layout>

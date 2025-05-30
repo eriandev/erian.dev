@@ -1,19 +1,17 @@
 ---
-import { ORIGIN } from '@/utils/consts'
+import { ORIGIN } from '@/utils/consts.ts'
+import Footer from '@/components/Footer.astro'
+import type { FooterProps, HeadProps } from '@/components/types.ts'
 import '@/app.css'
 
-interface Props {
-  title: string
-  lang?: string
-  slug?: string
+interface Props extends HeadProps {
   bodyClass?: string
-  themeColor?: string
-  description: string
+  footer?: FooterProps
 }
 
 const faviconImagePath = ORIGIN + '/favicon.png'
 const previewImagePath = ORIGIN + '/preview.png'
-const { description, title, bodyClass, lang = 'en', themeColor, slug } = Astro.props
+const { description, title, bodyClass, footer, lang = 'en', slug, themeColor } = Astro.props
 const canonicalUrl = typeof slug === 'string' ? new URL(slug, ORIGIN).href : ORIGIN
 ---
 
@@ -47,5 +45,6 @@ const canonicalUrl = typeof slug === 'string' ? new URL(slug, ORIGIN).href : ORI
 
   <body class:list={['min-h-screen bg-black text-white', bodyClass]}>
     <slot />
+    {footer && <Footer {...footer} />}
   </body>
 </html>

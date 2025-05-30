@@ -35,10 +35,18 @@ export interface GithubGraphProps {
   greenBlockProbability?: number
 }
 
+export interface HeroProps {
+  actions: LinkProps[]
+  socials: LinkProps[]
+  asideImage?: ImageProps
+  description: TextProps[]
+  currentlyLearning: LinkProps[]
+}
+
 export interface HeadProps {
-  lang: 'en' | 'es'
-  slug?: string
   title: string
+  slug?: string
+  lang?: string
   description: string
   themeColor?: string
 }
