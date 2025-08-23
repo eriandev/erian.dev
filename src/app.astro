@@ -24,6 +24,8 @@ const canonicalUrl = typeof slug === 'string' ? new URL(slug, ORIGIN).href : ORI
     <meta name="description" content={description} />
     {themeColor && <meta name="theme-color" content={themeColor} />}
 
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
     <link rel="canonical" href={canonicalUrl} />
     <link rel="apple-touch-icon" href={faviconImagePath} />
     <link rel="icon" type="image/png" sizes="64x64" href={faviconImagePath} />

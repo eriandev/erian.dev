@@ -1,6 +1,7 @@
 import icon from 'astro-icon'
 import { loadEnv } from 'vite'
 import svelte from '@astrojs/svelte'
+import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 import { iconTyping } from './src/config/integrations'
@@ -9,7 +10,7 @@ const { PUBLIC_ORIGIN: site, PUBLIC_PROTOCOL: protocol } = loadEnv(process.env.N
 
 export default defineConfig({
   site,
-  integrations: [icon(), svelte(), iconTyping()],
+  integrations: [icon(), svelte(), iconTyping(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
