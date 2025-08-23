@@ -42,9 +42,13 @@ const { announcement, socials } = Astro.props
     {
       socials.length > 0 && (
         <ul class="flex justify-center gap-x-10">
-          {socials.map(({ icon, ...socialProps }) => (
+          {socials.map(({ icon, label, ...socialProps }) => (
             <li>
-              <Link {...socialProps} class="grid size-16 place-items-center rounded-full border-2 border-white">
+              <Link
+                {...socialProps}
+                aria-label={label}
+                class="grid size-16 place-items-center rounded-full border-2 border-white"
+              >
                 {icon && <Icon size={32} name={icon.name} style={icon.style} />}
               </Link>
             </li>
@@ -54,13 +58,13 @@ const { announcement, socials } = Astro.props
     }
 
     <Container unlimited as="article" class="grid gap-y-2">
-      <div class="flex flex-col items-center justify-center gap-x-2 sm:flex-row">
-        <Text as="span" class="font-secondary">Made with</Text>
-        <Link external to="https://astro.build">
+      <div class="font-secondary flex flex-col items-center justify-center gap-x-2 sm:flex-row">
+        <Text as="span">Made with</Text>
+        <Link external aria-label="Astro brand logo" to="https://astro.build">
           <Icon name="brands/astro" width={132} height={44} />
         </Link>
-        <Text as="span" class="font-secondary">and</Text>
-        <Link external to="https://tailwindcss.com" class="pt-3 sm:pt-0">
+        <Text as="span">and</Text>
+        <Link external aria-label="TailwindCSS brand logo" to="https://tailwindcss.com" class="pt-3 sm:pt-0">
           <Icon name="brands/tailwindcss" width={175} height={22} />
         </Link>
       </div>

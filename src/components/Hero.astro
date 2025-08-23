@@ -69,9 +69,9 @@ function getSeparationSymbol(arryaLength: number, index: number) {
         <div class="flex">
           {
             socials && (
-              <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 *:text-gray-300">
-                {socials.map(({ icon, ...socialProps }) => (
-                  <Link {...socialProps}>
+              <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 text-gray-300">
+                {socials.map(({ icon, label, ...socialProps }) => (
+                  <Link aria-label={label} {...socialProps}>
                     {icon && (
                       <Icon
                         size={32}

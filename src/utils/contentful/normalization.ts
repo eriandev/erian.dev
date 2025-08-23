@@ -69,11 +69,11 @@ export function normalizeAtLink({ fields }: ContentfulAtLink): LinkProps {
   const { href, label, asButton = false, buttonVariant, external = false, featured = false, icon, image } = fields
 
   return {
+    label,
     to: href,
-    btn: asButton,
     external,
     featured,
-    label,
+    btn: asButton,
     btnVariant: buttonVariant as ButtonProps['variant'],
     icon: icon != null ? normalizeAtIcon(icon) : undefined,
     image: image != null ? normalizeAtImage(image) : undefined,
