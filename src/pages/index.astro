@@ -5,20 +5,15 @@ import Container from '@/components/Container.astro'
 import { getPgMainContent } from '@/services/contentful.ts'
 import SectionsHandler from '@/components/sections/SectionHandler.astro'
 
-const { actions, currentlyLearning, description, head, sections, socials, asideImage, footer } =
-  await getPgMainContent()
+const { head, sections, footer, ...heroProps } = await getPgMainContent()
 
+const haveSections = sections && sections?.length > 0
 const haveFooterAnnouncement = footer?.announcement != null
 ---
 
 <Layout {...head} {footer}>
   <Container unlimited as="main">
-    <Hero {actions} {currentlyLearning} {description} {socials} {asideImage} />
-
-    {
-      sections && sections?.length > 0 && (
-        <SectionsHandler {sections} class={haveFooterAnnouncement ? 'pb-40 lg:pb-24' : undefined} />
-      )
-    }
+    <Hero {...heroProps} />
+    {haveSections && <SectionsHandler {sections} class:list={{ 'pb-40 lg:pb-24': haveFooterAnnouncement }} />}
   </Container>
 </Layout>
