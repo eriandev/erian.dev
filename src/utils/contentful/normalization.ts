@@ -44,8 +44,10 @@ export function normalizeAtButton({ fields }: ContentfulAtButton): ButtonProps {
   }
 }
 
-export function normalizeAtIcon({ fields }: ContentfulAtIcon): IconProps {
-  const { name, style } = fields
+export function normalizeAtIcon(atIcon?: ContentfulAtIcon): IconProps | undefined {
+  if (atIcon == null) return undefined
+
+  const { name, style } = atIcon.fields
 
   return {
     name: name as IconProps['name'],
@@ -53,8 +55,10 @@ export function normalizeAtIcon({ fields }: ContentfulAtIcon): IconProps {
   }
 }
 
-export function normalizeAtImage({ fields }: ContentfulAtImage): ImageProps {
-  const { alt, height, source, width } = fields
+export function normalizeAtImage(atImage?: ContentfulAtImage): ImageProps | undefined {
+  if (atImage == null) return undefined
+
+  const { alt, height, source, width } = atImage.fields
   const sourceUrl = source.fields.file.url
 
   return {
@@ -74,9 +78,9 @@ export function normalizeAtLink({ fields }: ContentfulAtLink): LinkProps {
     external,
     featured,
     btn: asButton,
+    icon: normalizeAtIcon(icon),
+    image: normalizeAtImage(image),
     btnVariant: buttonVariant as ButtonProps['variant'],
-    icon: icon != null ? normalizeAtIcon(icon) : undefined,
-    image: image != null ? normalizeAtImage(image) : undefined,
   }
 }
 
@@ -103,8 +107,10 @@ export function normalizeMlHead({ fields }: ContentfulMlHead): HeadProps {
   }
 }
 
-export function normalizeMlModal({ fields }: ContentfulMlModal): ModalProps {
-  const { action, content, title } = fields
+export function normalizeMlModal(mlModal?: ContentfulMlModal): ModalProps | undefined {
+  if (mlModal == null) return undefined
+
+  const { action, content, title } = mlModal.fields
 
   return {
     action: normalizeAtLink(action),
@@ -113,11 +119,13 @@ export function normalizeMlModal({ fields }: ContentfulMlModal): ModalProps {
   }
 }
 
-export function normalizeOrFooter({ fields }: ContentfulOrFooter): FooterProps {
-  const { announcement, socials } = fields
+export function normalizeOrFooter(orFooter?: ContentfulOrFooter): FooterProps | undefined {
+  if (orFooter == null) return undefined
+
+  const { announcement, socials } = orFooter.fields
 
   return {
-    announcement: announcement != null ? normalizeMlModal(announcement) : undefined,
+    announcement: normalizeMlModal(announcement),
     socials: socials?.map((social) => normalizeAtLink(social)) ?? [],
   }
 }
@@ -136,16 +144,14 @@ export function normalizeOrSection({ fields }: ContentfulOrSection): PgMainSecti
 
 // eslint-disable-next-line complexity -- Necessary to map the object
 export function normalizePgMain({ fields }: ContentfulPgMain): PgMain {
-  const { head, actions, asideImage, currentlyLearning, description, footer, sections, socials } = fields
-
   return {
-    head: normalizeMlHead(head),
-    asideImage: asideImage != null ? normalizeAtImage(asideImage) : undefined,
-    socials: socials?.map((social) => normalizeAtLink(social)) ?? [],
-    actions: actions?.map((action) => normalizeAtLink(action)) ?? [],
-    currentlyLearning: currentlyLearning?.map((link) => normalizeAtLink(link)) ?? [],
-    description: description?.map((text) => normalizeAtText(text)) ?? [],
-    sections: sections?.map((section) => normalizeOrSection(section)) ?? [],
-    footer: footer != null ? normalizeOrFooter(footer) : undefined,
+    head: normalizeMlHead(fields.head),
+    footer: normalizeOrFooter(fields.footer),
+    asideImage: normalizeAtImage(fields.asideImage),
+    socials: fields.socials?.map((social) => normalizeAtLink(social)) ?? [],
+    actions: fields.actions?.map((action) => normalizeAtLink(action)) ?? [],
+    description: fields.description?.map((text) => normalizeAtText(text)) ?? [],
+    sections: fields.sections?.map((section) => normalizeOrSection(section)) ?? [],
+    currentlyLearning: fields.currentlyLearning?.map((link) => normalizeAtLink(link)) ?? [],
   }
 }
