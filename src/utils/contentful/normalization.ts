@@ -25,7 +25,7 @@ import type {
 } from '@/utils/contentful/types'
 
 export function parsedText(input: string): Array<{ text: string; featured: boolean }> {
-  const regex = /\*\*(.*?)\*\*/g
+  const regex = /\*\*(?<bold>.*?)\*\*/g
   const parts = input.split(regex)
 
   return parts.map((text, index) => ({
@@ -45,7 +45,7 @@ export function normalizeAtButton({ fields }: ContentfulAtButton): ButtonProps {
 }
 
 export function normalizeAtIcon(atIcon?: ContentfulAtIcon): IconProps | undefined {
-  if (atIcon == null) return undefined
+  if (atIcon === undefined) return atIcon
 
   const { name, style } = atIcon.fields
 
@@ -56,7 +56,7 @@ export function normalizeAtIcon(atIcon?: ContentfulAtIcon): IconProps | undefine
 }
 
 export function normalizeAtImage(atImage?: ContentfulAtImage): ImageProps | undefined {
-  if (atImage == null) return undefined
+  if (atImage === undefined) return atImage
 
   const { alt, height, source, width } = atImage.fields
   const sourceUrl = source.fields.file.url
@@ -108,7 +108,7 @@ export function normalizeMlHead({ fields }: ContentfulMlHead): HeadProps {
 }
 
 export function normalizeMlModal(mlModal?: ContentfulMlModal): ModalProps | undefined {
-  if (mlModal == null) return undefined
+  if (mlModal === undefined) return mlModal
 
   const { action, content, title } = mlModal.fields
 
@@ -120,7 +120,7 @@ export function normalizeMlModal(mlModal?: ContentfulMlModal): ModalProps | unde
 }
 
 export function normalizeOrFooter(orFooter?: ContentfulOrFooter): FooterProps | undefined {
-  if (orFooter == null) return undefined
+  if (orFooter === undefined) return orFooter
 
   const { announcement, socials } = orFooter.fields
 
