@@ -146,6 +146,7 @@ export function normalizeOrSection({ fields }: ContentfulOrSection): PgMainSecti
 export function normalizePgMain({ fields }: ContentfulPgMain): PgMain {
   return {
     head: normalizeMlHead(fields.head),
+    title: normalizeAtText(fields.title),
     footer: normalizeOrFooter(fields.footer),
     asideImage: normalizeAtImage(fields.asideImage),
     socials: fields.socials?.map((social) => normalizeAtLink(social)) ?? [],

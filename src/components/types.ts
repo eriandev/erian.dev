@@ -36,6 +36,7 @@ export interface GithubGraphProps {
 }
 
 export interface HeroProps {
+  title: TextProps
   actions: LinkProps[]
   socials: LinkProps[]
   asideImage?: ImageProps

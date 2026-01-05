@@ -4,11 +4,12 @@ import Link from '@/components/Link.astro'
 import Text from '@/components/Text.astro'
 import Image from '@/components/Image.astro'
 import Container from '@/components/Container.astro'
+import { parsedText } from '@/utils/contentful/normalization'
 import type { HeroProps } from '@/components/types.ts'
 
 interface Props extends HeroProps {}
 
-const { actions, currentlyLearning, description, socials, asideImage } = Astro.props
+const { actions, currentlyLearning, title, description, socials, asideImage } = Astro.props
 const aboutMe = description?.slice(0, -1)
 const learningParagraph = description?.slice(-1)[0]
 
@@ -19,13 +20,25 @@ function getSeparationSymbol(arryaLength: number, index: number) {
 
 <Container unlimited as="section" class="lg:overflow-hidden">
   <div
-    class="relative mx-auto flex max-h-[60rem] max-w-6xl grid-cols-3 flex-col gap-8 gap-y-16 px-4 py-16 md:px-8 lg:grid lg:h-screen lg:pt-40 xl:pt-64"
+    class="relative mx-auto flex max-h-240 max-w-6xl grid-cols-3 flex-col gap-8 gap-y-16 px-4 py-16 md:px-8 lg:grid lg:h-screen lg:pt-40 xl:pt-64"
   >
     <section class="col-span-2 lg:pb-24">
       <article>
         <header>
-          <Text as="h1" class="font-primary text-title max-w-[36rem] font-semibold text-balance lg:max-w-none">
-            <Text featured as="strong">Erick Vargas</Text> Frontend developer.
+          <Text {...title} class="max-w-xl font-primary text-title font-semibold text-balance lg:max-w-none">
+            {
+              title.parse
+                ? parsedText(title.label!).map(({ featured, text }) =>
+                    featured ? (
+                      <Text featured as="strong">
+                        {text}
+                      </Text>
+                    ) : (
+                      text
+                    ),
+                  )
+                : title.label
+            }
           </Text>
         </header>
         {
@@ -44,7 +57,7 @@ function getSeparationSymbol(arryaLength: number, index: number) {
       <Container
         unlimited
         as="article"
-        class="font-secondary w-full max-w-2xl pt-10 text-xl tracking-wide text-balance text-gray-300 lg:absolute lg:bottom-16 lg:left-8"
+        class="w-full max-w-2xl pt-10 font-secondary text-xl tracking-wide text-balance text-gray-300 lg:absolute lg:bottom-16 lg:left-8"
       >
         {aboutMe && aboutMe.map(({ label, ...aboutMeProps }) => <Text {...aboutMeProps}>{label}</Text>)}
         {
@@ -64,7 +77,7 @@ function getSeparationSymbol(arryaLength: number, index: number) {
     </section>
     <section class="relative">
       <div
-        class="hidden h-full w-full min-w-[460px] flex-col gap-4 sm:min-w-[660px] lg:absolute lg:top-64 lg:block lg:min-w-[1150px]"
+        class="hidden h-full w-full min-w-115 flex-col gap-4 sm:min-w-165 lg:absolute lg:top-64 lg:block lg:min-w-287.5"
       >
         <div class="flex">
           {
@@ -91,7 +104,7 @@ function getSeparationSymbol(arryaLength: number, index: number) {
                   width={444}
                   height={440}
                   src="/images/green-glow.webp"
-                  class="absolute inset-0 -top-4/6 h-[820px] w-full"
+                  class="absolute inset-0 -top-4/6 h-205 w-full"
                   alt={`Green glow that serves as an areola for the '${asideImage.alt}'`}
                 />
                 <Image

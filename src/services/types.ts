@@ -3,6 +3,7 @@ import type { FooterProps, HeadProps, ImageProps, LinkProps, TextProps } from '@
 
 export interface PgMain {
   head: HeadProps
+  title: TextProps
   actions: LinkProps[]
   description: TextProps[]
   currentlyLearning: LinkProps[]

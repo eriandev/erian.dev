@@ -130,6 +130,7 @@ export type ContentfulOrSection = WithContentfulAggregations<{
 export type ContentfulPgMain = WithContentfulAggregations<{
   internal: string
   head: ContentfulMlHead
+  title: ContentfulAtText
   actions?: ContentfulAtLink[]
   description?: ContentfulAtText[]
   currentlyLearning?: ContentfulAtLink[]
