@@ -67,7 +67,7 @@ const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
           <div class="flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
             {featuredItems.map(({ to, external, featured, image }) => (
               <Link {to} {external} {featured}>
-                {image && <Image {...image} class="drop-shine badge-transition size-24 hover:scale-110 lg:size-32" />}
+                {image && <Image {...image} class="size-24 drop-shine badge-transition hover:scale-110 lg:size-32" />}
               </Link>
             ))}
           </div>

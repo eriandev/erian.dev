@@ -93,8 +93,8 @@
 
 @layer components {
   .btn {
-    @apply font-secondary cursor-pointer px-12 py-4 text-lg leading-none font-semibold text-white;
-    @apply border-primary rounded-full border-4 transition-[scale] duration-250 ease-in-out;
+    @apply cursor-pointer px-12 py-4 font-secondary text-lg leading-none font-semibold text-white;
+    @apply rounded-full border-4 border-primary transition-[scale] duration-250 ease-in-out;
     @apply hover:scale-105 active:scale-100;
 
     &.primary {
@@ -103,12 +103,12 @@
   }
 
   .text.featured {
-    @apply from-primary to-secondary inline-block bg-linear-to-r bg-clip-text text-transparent;
+    @apply inline-block bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent;
   }
 
   .link.featured {
-    @apply text-primary relative inline-block leading-tight font-semibold;
-    @apply before:from-primary before:to-secondary before:bg-linear-to-r;
+    @apply relative inline-block leading-tight font-semibold text-primary;
+    @apply before:bg-linear-to-r before:from-primary before:to-secondary;
     @apply before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0;
     @apply before:transition-[width] before:duration-300 before:ease-[ease] before:content-[''] hover:before:w-full;
   }

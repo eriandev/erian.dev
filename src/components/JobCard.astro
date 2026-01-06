@@ -13,13 +13,13 @@ const descriptionParts = description?.split('—')
 <Container
   unlimited
   as="article"
-  class="dark-x-gradient font-primary shiny flex w-full items-center justify-between rounded-lg px-6 py-3.5 transition-shadow duration-500 ease-in-out"
+  class="flex w-full items-center justify-between rounded-lg dark-x-gradient px-6 py-3.5 font-primary shiny transition-shadow duration-500 ease-in-out"
 >
   <div class="flex items-center gap-x-4 tracking-wide">
     {logo && <Image lazy {...logo} class="size-10 rounded-md" />}
 
     <hgroup>
-      <Text as="h3" class="text-primary text-base font-semibold">
+      <Text as="h3" class="text-base font-semibold text-primary">
         {company}
       </Text>
       <Text as="h4">{position}</Text>

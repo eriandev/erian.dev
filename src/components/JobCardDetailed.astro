@@ -15,23 +15,23 @@ const { company, logo, period, position, description, tags } = Astro.props
     <section>
       {
         period && (
-          <div class="font-secondary flex items-center gap-x-1 text-sm">
+          <div class="flex items-center gap-x-1 font-secondary text-sm">
             <Text as="span">{period}</Text>
           </div>
         )
       }
 
-      <hgroup class="font-primary flex flex-col items-start gap-x-1.5 sm:flex-row sm:items-center">
+      <hgroup class="flex flex-col items-start gap-x-1.5 font-primary sm:flex-row sm:items-center">
         <Text as="h3" class="text-xl font-semibold text-white">{position}</Text>
-        <Text as="span" class="font-secondary hidden text-sm leading-none sm:block">at</Text>
-        <Text as="h4" class="text-primary font-semibold lg:text-lg">{company}</Text>
+        <Text as="span" class="hidden font-secondary text-sm leading-none sm:block">at</Text>
+        <Text as="h4" class="font-semibold text-primary lg:text-lg">{company}</Text>
       </hgroup>
     </section>
   </header>
 
   {
     tags && (
-      <div class="font-primary flex flex-wrap gap-2 text-xs font-medium">
+      <div class="flex flex-wrap gap-2 font-primary text-xs font-medium">
         {tags.map((tag) => (
           <Text as="span" class="rounded-xl border border-gray-600 px-2 py-0.5">
             {tag}

@@ -13,7 +13,7 @@ const { class: extraClass, sections } = Astro.props
 <Container
   as="nav"
   class:list={[
-    'border-opacity-20 font-primary flex w-full items-center justify-between rounded-full border-2 border-white bg-slate-900 px-4 py-3 font-semibold',
+    'border-opacity-20 flex w-full items-center justify-between rounded-full border-2 border-white bg-slate-900 px-4 py-3 font-primary font-semibold',
     extraClass,
   ]}
 >
@@ -23,7 +23,7 @@ const { class: extraClass, sections } = Astro.props
       height={36}
       alt="Profile"
       src="/images/profile.webp"
-      class="border-primary size-9 rounded-full border-2"
+      class="size-9 rounded-full border-2 border-primary"
     />
     <Text>Erick Vargas</Text>
   </article>
