@@ -10,7 +10,7 @@
     "preview": "astro preview",
     "format": "prettier --write .",
     "build": "pnpm check && astro build",
-    "lint": "eslint src/**/*.{astro,ts}",
+    "lint": "prettier --check . && eslint .",
     "check": "astro check --tsconfig tsconfig.json"
   },
   "engines": {
@@ -21,6 +21,7 @@
     "@astrojs/check": "0.9.6",
     "@astrojs/sitemap": "3.6.0",
     "@astrojs/svelte": "7.2.4",
+    "@eslint/compat": "2.0.0",
     "@tailwindcss/vite": "4.1.18",
     "@types/node": "25.0.3",
     "@typescript-eslint/eslint-plugin": "8.50.1",
