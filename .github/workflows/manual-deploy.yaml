@@ -23,7 +23,7 @@ jobs:
       - name: Use pnpm 🗜️
         uses: pnpm/action-setup@v2
         with:
-          version: 10.27.0
+          version: 10.32.1
           run_install: false
 
       - name: Use Node.js 🐢
