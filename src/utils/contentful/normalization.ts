@@ -25,7 +25,7 @@ import type {
 } from '@/utils/contentful/types'
 
 export function parsedText(input: string): Array<{ text: string; featured: boolean }> {
-  const regex = /\*\*(?<bold>.*?)\*\*/g
+  const regex = /\*\*(?<bold>.*?)\*\*/gv
   const parts = input.split(regex)
 
   return parts.map((text, index) => ({

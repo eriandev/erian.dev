@@ -21,7 +21,7 @@
   }: GithubGraphProps = $props()
 
   let containerWidth = $state<number>()
-  let mutableDecorations = [...decorations]
+  let mutableDecorations = $derived([...decorations])
   let countArray = $state(Array.from({ length: getTotalColumns() }))
 
   function getTotalColumns () {

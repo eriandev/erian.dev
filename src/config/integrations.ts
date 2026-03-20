@@ -35,7 +35,7 @@ function generateIconTypes(logger: AstroIntegrationLogger): void {
     const svgPaths = getAllSvgFiles(iconsDir)
 
     const iconNames = svgPaths.map((fullPath) => {
-      const relativePath = relative(iconsDir, fullPath).replace(/\\/g, '/')
+      const relativePath = relative(iconsDir, fullPath).replace(/\\/gv, '/')
       return relativePath.replace('.svg', '')
     })
 
@@ -55,6 +55,6 @@ function generateIconTypes(logger: AstroIntegrationLogger): void {
     writeFileSync(outputFile, typeDefinitions)
     logger.info('Types generated')
   } catch (error) {
-    logger.error('Failed to generate types: ' + (error as Error).message)
+    logger.error(`Failed to generate types: ${(error as Error).message}`)
   }
 }
