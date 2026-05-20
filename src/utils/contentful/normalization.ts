@@ -100,7 +100,7 @@ export function normalizeMlHead({ fields }: ContentfulMlHead): HeadProps {
 
   return {
     description,
-    lang: lang as HeadProps['lang'],
+    lang,
     title,
     slug,
     themeColor,
