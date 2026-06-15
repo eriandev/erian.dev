@@ -77,7 +77,8 @@
 
   --color-black: #090e19;
   --color-primary: #02abb2;
-  --color-secondary: #5e79d1;
+  --color-secondary: #007b80;
+  --color-tertiary: #5e79d1;
 
   --color-graph-level-4: #39d353;
   --color-graph-level-3: #26a641;
@@ -103,12 +104,12 @@
   }
 
   .text.featured {
-    @apply inline-block bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent;
+    @apply inline-block bg-linear-to-r from-primary to-tertiary bg-clip-text text-transparent;
   }
 
   .link.featured {
     @apply relative inline-block leading-tight font-semibold text-primary;
-    @apply before:bg-linear-to-r before:from-primary before:to-secondary;
+    @apply before:bg-linear-to-r before:from-primary before:to-tertiary;
     @apply before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-0;
     @apply before:transition-[width] before:duration-300 before:ease-[ease] before:content-[''] hover:before:w-full;
   }
