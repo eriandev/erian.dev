@@ -42,6 +42,42 @@ const canonicalUrl = typeof slug === 'string' ? new URL(slug, ORIGIN).href : ORI
     <meta name="twitter:description" content={description} />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <slot name="preload" />
+
+    <style>
+      @font-face {
+        font-family: 'Ubuntu Sans';
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+        src: url('/fonts/ubuntu-sans-400.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Ubuntu Sans';
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+        src: url('/fonts/ubuntu-sans-600.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Ubuntu Sans Mono';
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+        src: url('/fonts/ubuntu-sans-mono-500.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-family: 'Ubuntu Sans Mono';
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+        src: url('/fonts/ubuntu-sans-mono-600.woff2') format('woff2');
+      }
+    </style>
+
     <slot name="head" />
   </head>
 

@@ -12,6 +12,12 @@ const haveFooterAnnouncement = footer?.announcement != null
 ---
 
 <Layout {...head} {footer}>
+  <slot name="preload">
+    <link as="font" rel="preload" type="font/woff2" href="/fonts/ubuntu-sans-400.woff2" crossorigin="anonymous" />
+    <link as="font" rel="preload" type="font/woff2" href="/fonts/ubuntu-sans-600.woff2" crossorigin="anonymous" />
+    <link as="font" rel="preload" type="font/woff2" href="/fonts/ubuntu-sans-mono-600.woff2" crossorigin="anonymous" />
+  </slot>
+
   <Container unlimited as="main">
     <Hero {...heroProps} />
     {haveSections && <SectionsHandler {sections} class:list={{ 'pb-40 lg:pb-24': haveFooterAnnouncement }} />}

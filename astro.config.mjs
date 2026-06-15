@@ -11,11 +11,14 @@ const { PUBLIC_ORIGIN: site, PUBLIC_PROTOCOL: protocol } = loadEnv(process.env.N
 export default defineConfig({
   site,
   integrations: [icon(), svelte(), iconTyping(), sitemap()],
-  vite: {
-    plugins: [tailwindcss()],
+  build: {
+    inlineStylesheets: 'always',
   },
   image: {
     domains: ['images.ctfassets.net'],
     remotePatterns: [{ protocol }],
+  },
+  vite: {
+    plugins: [tailwindcss()],
   },
 })
