@@ -1,3 +1,4 @@
+import type { ImageOutputFormat } from 'astro'
 import type { ImgAttributes } from 'astro:assets'
 import type { HTMLAttributes } from 'astro/types'
 import type { IconName } from 'virtual:icon'
@@ -66,6 +67,8 @@ export interface ImageProps extends ImgAttributes {
   width: number
   height: number
   lazy?: boolean
+  widths?: number[]
+  format?: ImageOutputFormat
 }
 
 export interface JobCardProps {

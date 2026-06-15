@@ -4,8 +4,8 @@ import type { ImageProps } from '@/components/types'
 
 interface Props extends ImageProps {}
 
-const { src, alt, width, height, decoding, fetchpriority, lazy = false, class: extraClass, ...restProps } = Astro.props
+const { src, alt, width, height, lazy = false, class: extraClass, ...restProps } = Astro.props
 const loading = lazy ? 'lazy' : 'eager'
 ---
 
-<AstroImage {alt} {width} {height} {loading} {decoding} {fetchpriority} {src} class={extraClass} {...restProps} />
+<AstroImage {alt} {width} {height} {loading} {src} class={extraClass} {...restProps} />
