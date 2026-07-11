@@ -20,7 +20,7 @@ function getSeparationSymbol(arryaLength: number, index: number) {
 
 <Container unlimited as="section" class="lg:overflow-hidden">
   <div
-    class="relative mx-auto flex max-h-240 max-w-6xl grid-cols-3 flex-col gap-8 gap-y-16 px-4 py-16 md:px-8 lg:grid lg:h-screen lg:pt-40 xl:pt-64"
+    class="relative mx-auto flex max-h-240 min-h-192 max-w-6xl grid-cols-3 flex-col gap-8 gap-y-16 px-4 pt-[30dvh] pb-16 md:px-8 lg:grid lg:h-screen"
   >
     <section class="col-span-2 lg:pb-24">
       <article>
@@ -82,7 +82,7 @@ function getSeparationSymbol(arryaLength: number, index: number) {
         <div class="flex">
           {
             socials && (
-              <section class="relative z-10 grid content-start gap-y-8 pt-32 pr-4 text-gray-300">
+              <section class="relative z-10 grid content-start gap-y-8 pt-[10dvh] pr-4">
                 {socials.map(({ icon, label, ...socialProps }) => (
                   <Link aria-label={label} {...socialProps}>
                     {icon && (
@@ -104,7 +104,7 @@ function getSeparationSymbol(arryaLength: number, index: number) {
                   width={444}
                   height={419}
                   src="/images/green-glow.avif"
-                  class="absolute inset-0 -top-4/6 h-110 w-full"
+                  class="absolute -top-3/5 -left-1/10 size-287.5"
                   alt={`Green glow that serves as an areola for the '${asideImage.alt}'`}
                 />
                 <Image
