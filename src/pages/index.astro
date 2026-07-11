@@ -1,9 +1,9 @@
 ---
 import Layout from '@/app.astro'
-import Hero from '@/components/Hero.astro'
-import Container from '@/components/Container.astro'
+import Hero from '@/components/hero.astro'
+import Container from '@/components/container.astro'
 import { getPgMainContent } from '@/services/contentful.ts'
-import SectionsHandler from '@/components/sections/SectionHandler.astro'
+import SectionsHandler from '@/components/sections/section-handler.astro'
 
 const { head, sections, footer, ...heroProps } = await getPgMainContent()
 

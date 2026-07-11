@@ -1,13 +1,12 @@
 ---
-import Text from '@/components/Text.astro'
-import Link from '@/components/Link.astro'
-import Image from '@/components/Image.astro'
-import JobCard from '@/components/JobCard.astro'
-import JobCardDetailed from '@/components/JobCardDetailed.astro'
+import Text from '@/components/text.astro'
+import Link from '@/components/link.astro'
+import Image from '@/components/image.astro'
+import GithubGraph from '@/components/github-graph.svelte'
 import { parsedText } from '@/utils/contentful/normalization.ts'
-import { IdSection, type MyExperienceProps } from '@/components/sections/types.ts'
+import type { AboutMeProps } from '@/components/sections/types.ts'
 
-interface Props extends MyExperienceProps {
+interface Props extends AboutMeProps {
   orderNumber: number
 }
 
@@ -83,31 +82,15 @@ const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
   </div>
 
   {
-    additional?.identifier === IdSection.MY_EXPERIENCE && (
-      <div class="grid gap-y-14 pt-14 lg:pt-0">
-        {additional.data.map(({ jobs, year }) => (
-          <div class="grid gap-y-3 text-sm">
-            <Text as="span" class="font-secondary text-lg font-semibold">
-              {year}
-            </Text>
-            <div class="grid gap-y-5">
-              {jobs.map((job) => (
-                <JobCard {...job} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    )
-  }
+    additional &&
+      (() => {
+        const { blockSize, iconSize, rows, spacing, decorations, label } = additional.data.techs
 
-  {
-    additional?.identifier === IdSection.MY_EXPERIENCE_DETAILED && (
-      <div class="grid gap-y-10 pt-14 lg:pt-0">
-        {additional.data.map((job) => (
-          <JobCardDetailed {...job} />
-        ))}
-      </div>
-    )
+        return (
+          <div class="pt-14 lg:pt-0">
+            <GithubGraph client:visible {rows} {label} {spacing} {iconSize} {blockSize} {decorations} />
+          </div>
+        )
+      })
   }
 </section>
