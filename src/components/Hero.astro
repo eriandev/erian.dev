@@ -63,7 +63,7 @@ function getSeparationSymbol(arryaLength: number, index: number) {
         {
           learningParagraph && currentlyLearning && (
             <Text {...learningParagraph}>
-              {learningParagraph.label}
+              {learningParagraph.label}{' '}
               {currentlyLearning.map(({ label, ...currentlyLearningProps }, index) => (
                 <>
                   <Link {...currentlyLearningProps}>{label}</Link>
