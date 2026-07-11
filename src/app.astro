@@ -9,8 +9,8 @@ interface Props extends HeadProps {
   footer?: FooterProps
 }
 
-const faviconImagePath = ORIGIN + '/favicon.png'
-const previewImagePath = ORIGIN + '/preview.png'
+const faviconImagePath = ORIGIN + '/favicon.webp'
+const previewImagePath = ORIGIN + '/preview.webp'
 const { description, title, bodyClass, footer, lang = 'en', slug, themeColor } = Astro.props
 const canonicalUrl = typeof slug === 'string' ? new URL(slug, ORIGIN).href : ORIGIN
 ---
