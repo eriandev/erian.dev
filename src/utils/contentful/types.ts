@@ -50,6 +50,7 @@ export type ContentfulAtButton = WithContentfulAggregations<{
 export type ContentfulAtIcon = WithContentfulAggregations<{
   internal: string
   name: string
+  title?: string
   style?: string
 }>
 

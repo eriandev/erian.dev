@@ -58,7 +58,10 @@ export interface IconProps extends HTMLAttributes<'svg'> {
   size?: number
   style?: string
   width?: number
+  desc?: string
+  title?: string
   height?: number
+  'is:inline'?: boolean
 }
 
 export interface ImageProps extends ImgAttributes {

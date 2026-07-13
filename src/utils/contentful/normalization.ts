@@ -47,11 +47,12 @@ export function normalizeAtButton({ fields }: ContentfulAtButton): ButtonProps {
 export function normalizeAtIcon(atIcon?: ContentfulAtIcon): IconProps | undefined {
   if (atIcon === undefined) return atIcon
 
-  const { name, style } = atIcon.fields
+  const { name, style, title } = atIcon.fields
 
   return {
     name: name as IconProps['name'],
     style,
+    title,
   }
 }
 

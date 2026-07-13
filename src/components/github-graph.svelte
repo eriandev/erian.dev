@@ -103,11 +103,12 @@
     {removeDecoration(decoration)}
 
     {#if decoration}
-      <span title={decoration.label} class={blockClasses} style:background={decoration.background}>
+      <span aria-label={decoration.label} title={decoration.label} class={blockClasses} style:background={decoration.background}>
         {#if decoration.icon}
           <InlineSvg
             width={iconSize}
             height={iconSize}
+            aria-hidden="true"
             name={decoration.icon.name}
             style="color: {decoration.icon.color}"
           />
