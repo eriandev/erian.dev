@@ -43,7 +43,7 @@ const { company, logo, period, position, description, tags } = Astro.props
 
   {
     description && (
-      <div class="font-secondary">
+      <div class="mt-1 grid gap-y-2 font-secondary leading-6">
         {description.map((paragraph) => (
           <Text>{paragraph}</Text>
         ))}
