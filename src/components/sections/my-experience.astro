@@ -4,7 +4,7 @@ import Link from '@/components/link.astro'
 import Image from '@/components/image.astro'
 import JobCard from '@/components/job-card.astro'
 import JobCardDetailed from '@/components/job-card-detailed.astro'
-import { parsedText } from '@/utils/contentful/normalization.ts'
+import { parsedText, slugify } from '@/utils/contentful/normalization.ts'
 import { IdSection, type MyExperienceProps } from '@/components/sections/types.ts'
 
 interface Props extends MyExperienceProps {
@@ -13,12 +13,13 @@ interface Props extends MyExperienceProps {
 
 const { title, description, featuredItems, orderNumber, additional } = Astro.props
 const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
+const sectionId = slugify(title.label)
 ---
 
-<section class="relative px-4 py-16 md:px-8 lg:mx-auto lg:grid lg:grid-cols-2 lg:gap-x-16 lg:py-32">
+<section id={sectionId} class="relative px-4 py-16 md:px-8 lg:mx-auto lg:grid lg:grid-cols-2 lg:gap-x-16 lg:py-32">
   <div>
-    <article class="sticky top-16 flex flex-col gap-y-6">
-      <hgroup>
+    <article id={`${sectionId}-featured`} class="sticky top-16 flex flex-col gap-y-6">
+      <header>
         <Text as="span" class="font-primary text-lg font-semibold text-white xl:absolute xl:-left-18">
           {orderNumberParsed}
         </Text>
@@ -39,8 +40,8 @@ const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
             </Text>
           )
         }
-      </hgroup>
-      <div class="grid gap-y-4">
+      </header>
+      <section class="grid gap-y-4">
         {
           description.map(
             (desc) =>
@@ -61,14 +62,15 @@ const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
               ),
           )
         }
-      </div>
+      </section>
       {
         featuredItems.length > 0 && (
-          <div class="mt-4 flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
+          <section class="mt-4 flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
             {featuredItems.map(({ to, external, featured, image }) => (
               <Link {to} {external} {featured}>
                 {image && (
                   <Image
+                    lazy
                     {...image}
                     widths={[96, 128, 256]}
                     class="size-24 drop-shine badge-transition hover:scale-110 lg:size-32"
@@ -76,7 +78,7 @@ const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
                 )}
               </Link>
             ))}
-          </div>
+          </section>
         )
       }
     </article>
@@ -84,17 +86,21 @@ const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
 
   {
     additional?.identifier === IdSection.MY_EXPERIENCE && (
-      <div class="grid gap-y-14 pt-14 lg:pt-0">
+      <div id={`${sectionId}-content`} class="grid gap-y-14 pt-14 lg:pt-0">
         {additional.data.map(({ jobs, year }) => (
           <div class="grid gap-y-3 text-sm">
             <Text as="span" class="font-secondary text-lg font-semibold">
               {year}
             </Text>
-            <div class="grid gap-y-5">
-              {jobs.map((job) => (
-                <JobCard {...job} />
-              ))}
-            </div>
+            {jobs.length > 1 ? (
+              <div class="grid gap-y-5">
+                {jobs.map((job) => (
+                  <JobCard {...job} />
+                ))}
+              </div>
+            ) : (
+              <JobCard {...jobs[0]} />
+            )}
           </div>
         ))}
       </div>
@@ -103,7 +109,7 @@ const orderNumberParsed = orderNumber.toString().padStart(2, '0') + '/'
 
   {
     additional?.identifier === IdSection.MY_EXPERIENCE_DETAILED && (
-      <div class="grid gap-y-10 pt-14 lg:pt-0">
+      <div id={`${sectionId}-content`} class="grid gap-y-10 pt-14 lg:pt-0">
         {additional.data.map((job) => (
           <JobCardDetailed {...job} />
         ))}

@@ -8,46 +8,45 @@ interface Props extends JobCardDetailedProps {}
 const { company, logo, period, position, description, tags } = Astro.props
 ---
 
-<div class="flex flex-col gap-y-2.5 text-gray-300">
+<article class="flex flex-col gap-y-2.5 text-gray-300">
   <header class="flex items-center gap-x-3">
     {logo && <Image lazy {...logo} class="size-10 rounded-md" />}
 
-    <section>
-      {
-        period && (
-          <div class="flex items-center gap-x-1 font-secondary text-sm">
-            <Text as="span">{period}</Text>
-          </div>
-        )
-      }
-
+    <div>
       <hgroup class="flex flex-col items-start gap-x-1.5 font-primary sm:flex-row sm:items-center">
         <Text as="h3" class="text-xl font-semibold text-white">{position}</Text>
         <Text as="span" class="hidden font-secondary text-sm leading-none sm:block">at</Text>
         <Text as="h4" class="font-semibold text-primary lg:text-lg">{company}</Text>
       </hgroup>
-    </section>
+      {
+        period && (
+          <Text as="span" class="flex items-center gap-x-1 font-secondary text-sm">
+            {period}
+          </Text>
+        )
+      }
+    </div>
   </header>
 
   {
     tags && (
-      <div class="flex flex-wrap gap-2 font-primary text-xs font-medium">
+      <section class="flex flex-wrap gap-2 font-primary text-xs font-medium">
         {tags.map((tag) => (
           <Text as="span" class="rounded-xl border border-gray-600 px-2 py-0.5">
             {tag}
           </Text>
         ))}
-      </div>
+      </section>
     )
   }
 
   {
     description && (
-      <div class="mt-1 grid gap-y-2 font-secondary leading-6">
+      <section class="mt-1 grid gap-y-2 font-secondary leading-6">
         {description.map((paragraph) => (
           <Text>{paragraph}</Text>
         ))}
-      </div>
+      </section>
     )
   }
-</div>
+</article>

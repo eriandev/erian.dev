@@ -34,6 +34,17 @@ export function parsedText(input: string): Array<{ text: string; featured: boole
   }))
 }
 
+export function slugify(text: string | undefined) {
+  return text
+    ?.toLocaleLowerCase()
+    .replace(/\*\*(?<temp1>.*?)\*\*/gv, '-$1-')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/gv, '')
+    .replace(/[^a-z0-9]+/gv, '-')
+    .replace(/-+/gv, '-')
+    .replace(/^-|-$/gv, '')
+}
+
 export function normalizeAtButton({ fields }: ContentfulAtButton): ButtonProps {
   const { id, label, variant } = fields
 
