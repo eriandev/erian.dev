@@ -30,12 +30,16 @@ const { company, logo, period, position, description, tags } = Astro.props
 
   {
     tags && (
-      <section class="flex flex-wrap gap-2 font-primary text-xs font-medium">
-        {tags.map((tag) => (
-          <Text as="span" class="rounded-xl border border-gray-600 px-2 py-0.5">
-            {tag}
-          </Text>
-        ))}
+      <section class="font-primary text-xs font-medium">
+        <ul class="flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <li>
+              <Text as="span" class="rounded-xl border border-gray-600 px-2 py-0.5">
+                {tag}
+              </Text>
+            </li>
+          ))}
+        </ul>
       </section>
     )
   }
