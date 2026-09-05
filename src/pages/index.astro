@@ -12,11 +12,11 @@ const haveFooterAnnouncement = footer?.announcement != null
 ---
 
 <Layout {...head} {footer}>
-  <slot name="preload">
+  <Fragment slot="preload">
     <link as="font" rel="preload" type="font/woff2" href="/fonts/ubuntu-sans-400.woff2" crossorigin="anonymous" />
     <link as="font" rel="preload" type="font/woff2" href="/fonts/ubuntu-sans-600.woff2" crossorigin="anonymous" />
     <link as="font" rel="preload" type="font/woff2" href="/fonts/ubuntu-sans-mono-600.woff2" crossorigin="anonymous" />
-  </slot>
+  </Fragment>
 
   <Container unlimited as="main">
     <Hero {...heroProps} />
