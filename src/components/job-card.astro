@@ -2,9 +2,7 @@
 import Text from '@/components/text.astro'
 import Image from '@/components/image.astro'
 import Container from '@/components/container.astro'
-import type { JobCardProps } from '@/components/types.ts'
-
-interface Props extends JobCardProps {}
+import type { JobCardProps as Props } from '@/components/types.ts'
 
 const { company, position, description, logo } = Astro.props
 const descriptionParts = description?.split('—')

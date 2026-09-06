@@ -5,9 +5,7 @@ import Text from '@/components/text.astro'
 import Image from '@/components/image.astro'
 import Container from '@/components/container.astro'
 import { parsedText } from '@/utils/contentful/normalization'
-import type { HeroProps } from '@/components/types.ts'
-
-interface Props extends HeroProps {}
+import type { HeroProps as Props } from '@/components/types.ts'
 
 const { actions, currentlyLearning, title, description, socials, asideImage } = Astro.props
 const aboutMe = description?.slice(0, -1)

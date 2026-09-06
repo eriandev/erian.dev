@@ -1,8 +1,6 @@
 ---
 import { Image as AstroImage } from 'astro:assets'
-import type { ImageProps } from '@/components/types'
-
-interface Props extends ImageProps {}
+import type { ImageProps as Props } from '@/components/types'
 
 const { src, alt, width, height, lazy = false, class: extraClass, ...restProps } = Astro.props
 const loading = lazy ? 'lazy' : 'eager'

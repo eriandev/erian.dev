@@ -8,7 +8,7 @@
     'bg-graph-level-2',
     'bg-graph-level-3',
     'bg-graph-level-4',
-  ]
+  ] as const
   const {
     rows,
     label,

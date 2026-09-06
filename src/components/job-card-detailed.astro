@@ -1,9 +1,7 @@
 ---
 import Text from '@/components/text.astro'
 import Image from '@/components/image.astro'
-import type { JobCardDetailedProps } from '@/components/types.ts'
-
-interface Props extends JobCardDetailedProps {}
+import type { JobCardDetailedProps as Props } from '@/components/types.ts'
 
 const { company, logo, period, position, description, tags } = Astro.props
 ---

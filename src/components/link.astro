@@ -1,7 +1,5 @@
 ---
-import type { LinkProps } from '@/components/types'
-
-interface Props extends LinkProps {}
+import type { LinkProps as Props } from '@/components/types'
 
 const { to, title, external = false, featured = false, btn = false, class: extraClass, ...restProps } = Astro.props
 const rel = external ? 'noopener noreferrer' : null
