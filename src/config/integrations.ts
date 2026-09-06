@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url'
+import { rename } from 'node:fs/promises'
 import { join, relative } from 'node:path'
 import { readdirSync, existsSync, mkdirSync, writeFileSync, statSync } from 'node:fs'
 import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
@@ -7,6 +9,18 @@ export const iconTyping = (): AstroIntegration => ({
   hooks: {
     'astro:config:done': ({ logger }) => {
       generateIconTypes(logger)
+    },
+  },
+})
+
+export const sitemapFilename = (): AstroIntegration => ({
+  name: 'sitemap-filename',
+
+  hooks: {
+    'astro:build:done': async ({ dir }) => {
+      const outputDir = fileURLToPath(dir)
+
+      await rename(`${outputDir}/sitemap-index.xml`, `${outputDir}/sitemap.xml`)
     },
   },
 })
