@@ -20,29 +20,29 @@ const canonicalUrl = typeof slug === 'string' ? new URL(slug, ORIGIN).href : ORI
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
     {themeColor && <meta name="theme-color" content={themeColor} />}
 
-    <link rel="sitemap" href="/sitemap.xml" />
-
-    <link rel="canonical" href={canonicalUrl} />
-    <link rel="apple-touch-icon" href={faviconImagePath} />
     <link rel="icon" type="image/png" sizes="64x64" href={faviconImagePath} />
-
-    <meta property="og:url" content={ORIGIN} />
-    <meta property="og:title" content={title} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content={previewImagePath} />
-    <meta property="og:description" content={description} />
-
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:creator" content="@eriandev" />
-    <meta name="twitter:image" content={previewImagePath} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="apple-touch-icon" href={faviconImagePath} />
 
     <slot name="preload" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={ORIGIN} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={previewImagePath} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={previewImagePath} />
+    <meta name="twitter:creator" content="@eriandev" />
 
     <style>
       @font-face {
