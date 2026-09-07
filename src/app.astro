@@ -33,7 +33,7 @@ const canonicalUrl = typeof slug === 'string' ? new URL(slug, ORIGIN).href : ORI
     <slot name="preload" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={ORIGIN} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={previewImagePath} />
