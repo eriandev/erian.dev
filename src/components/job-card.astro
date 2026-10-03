@@ -24,16 +24,14 @@ const descriptionParts = description?.split('—')
     </hgroup>
   </div>
 
-  {
-    description && (
-      <div class="flex flex-col-reverse gap-x-2 gap-y-1 sm:flex-row">
-        {descriptionParts?.map((part, index) => (
-          <>
-            <Text>{part}</Text>
-            {index === 0 ? <span class="hidden sm:block">—</span> : null}
-          </>
-        ))}
-      </div>
-    )
-  }
+  {description && (
+    <div class="flex flex-col-reverse gap-x-2 gap-y-1 sm:flex-row">
+      {descriptionParts?.map((part, index) => (
+        <>
+          <Text>{part}</Text>
+          {index === 0 ? <span class="hidden sm:block">—</span> : null}
+        </>
+      ))}
+    </div>
+  )}
 </Container>

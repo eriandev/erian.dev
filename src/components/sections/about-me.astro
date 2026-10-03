@@ -22,76 +22,68 @@ const sectionId = slugify(title.label)
         <Text as="span" class="font-primary text-lg font-semibold text-white xl:absolute xl:-left-18">
           {orderNumberParsed}
         </Text>
-        {
-          title.label && (
-            <Text {...title} class="font-primary text-5xl font-semibold">
-              {title.parse
-                ? parsedText(title.label).map(({ featured, text }) =>
-                    featured ? (
-                      <Text featured as="strong" class="pl-4">
-                        {text}
-                      </Text>
-                    ) : (
-                      text
-                    ),
-                  )
-                : title.label}
-            </Text>
-          )
-        }
+        {title.label && (
+          <Text {...title} class="font-primary text-5xl font-semibold">
+            {title.parse
+              ? parsedText(title.label).map(({ featured, text }) =>
+                  featured ? (
+                    <Text featured as="strong" class="pl-4">
+                      {text}
+                    </Text>
+                  ) : (
+                    text
+                  ),
+                )
+              : title.label}
+          </Text>
+        )}
       </header>
       <section class="grid gap-y-4">
-        {
-          description.map(
-            (desc) =>
-              desc.label && (
-                <Text {...desc} class="font-primary text-base font-medium tracking-wide text-gray-400">
-                  {desc.parse
-                    ? parsedText(desc.label).map(({ featured, text }) =>
-                        featured ? (
-                          <Text as="strong" class="inline-block text-gray-200">
-                            {text}
-                          </Text>
-                        ) : (
-                          text
-                        ),
-                      )
-                    : desc.label}
-                </Text>
-              ),
-          )
-        }
+        {description.map(
+          (desc) =>
+            desc.label && (
+              <Text {...desc} class="font-primary text-base font-medium tracking-wide text-gray-400">
+                {desc.parse
+                  ? parsedText(desc.label).map(({ featured, text }) =>
+                      featured ? (
+                        <Text as="strong" class="inline-block text-gray-200">
+                          {text}
+                        </Text>
+                      ) : (
+                        text
+                      ),
+                    )
+                  : desc.label}
+              </Text>
+            ),
+        )}
       </section>
-      {
-        featuredItems.length > 0 && (
-          <section class="flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
-            {featuredItems.map(({ to, external, featured, image }) => (
-              <Link {to} {external} {featured}>
-                {image && (
-                  <Image
-                    {...image}
-                    widths={[96, 128, 256]}
-                    class="size-24 drop-shine badge-transition hover:scale-110 lg:size-32"
-                  />
-                )}
-              </Link>
-            ))}
-          </section>
-        )
-      }
+      {featuredItems.length > 0 && (
+        <section class="flex flex-wrap gap-4 lg:grid lg:max-w-xl lg:grid-cols-[repeat(3,fit-content(100%))]">
+          {featuredItems.map(({ to, external, featured, image }) => (
+            <Link {to} {external} {featured}>
+              {image && (
+                <Image
+                  {...image}
+                  widths={[96, 128, 256]}
+                  class="size-24 drop-shine badge-transition hover:scale-110 lg:size-32"
+                />
+              )}
+            </Link>
+          ))}
+        </section>
+      )}
     </article>
   </div>
 
-  {
-    additional &&
-      (() => {
-        const { blockSize, iconSize, rows, spacing, decorations, label } = additional.data.techs
+  {additional &&
+    (() => {
+      const { blockSize, iconSize, rows, spacing, decorations, label } = additional.data.techs
 
-        return (
-          <div id={`${sectionId}-content`} class="pt-14 lg:pt-0">
-            <GithubGraph client:visible {rows} {label} {spacing} {iconSize} {blockSize} {decorations} />
-          </div>
-        )
-      })
-  }
+      return (
+        <div id={`${sectionId}-content`} class="pt-14 lg:pt-0">
+          <GithubGraph client:visible {rows} {label} {spacing} {iconSize} {blockSize} {decorations} />
+        </div>
+      )
+    })}
 </section>

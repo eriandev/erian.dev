@@ -14,43 +14,39 @@ const { announcement, socials } = Astro.props
   class:list={['relative w-full bg-secondary pb-8', { 'pt-50.5 sm:pt-44.5 lg:pt-26': announcement != null }]}
 >
   <Container as="section" class="absolute top-0 right-0 left-0 -mt-50.5 px-4 sm:-mt-44.5 md:px-8 lg:-mt-26 xl:px-0">
-    {
-      announcement && (
-        <Container
-          unlimited
-          as="article"
-          class="mx-auto grid gap-y-8 rounded-2xl border-4 border-secondary bg-gray-800 px-8 py-16 text-center font-secondary lg:grid-cols-[fit-content(100%)_auto_fit-content(100%)] lg:items-center lg:gap-x-4 xl:gap-x-12 xl:px-16"
-        >
-          <Text {...announcement.title} class="text-4xl font-bold">
-            {announcement.title.label}
-          </Text>
-          <Text {...announcement.content} class="mx-auto max-w-xl text-pretty">
-            {announcement.content.label}
-          </Text>
-          <Link {...announcement.action}>{announcement.action.label}</Link>
-        </Container>
-      )
-    }
+    {announcement && (
+      <Container
+        unlimited
+        as="article"
+        class="mx-auto grid gap-y-8 rounded-2xl border-4 border-secondary bg-gray-800 px-8 py-16 text-center font-secondary lg:grid-cols-[fit-content(100%)_auto_fit-content(100%)] lg:items-center lg:gap-x-4 xl:gap-x-12 xl:px-16"
+      >
+        <Text {...announcement.title} class="text-4xl font-bold">
+          {announcement.title.label}
+        </Text>
+        <Text {...announcement.content} class="mx-auto max-w-xl text-pretty">
+          {announcement.content.label}
+        </Text>
+        <Link {...announcement.action}>{announcement.action.label}</Link>
+      </Container>
+    )}
   </Container>
 
   <Container as="section" class="grid gap-y-16 pt-16">
-    {
-      socials.length > 0 && (
-        <ul class="flex justify-center gap-x-10">
-          {socials.map(({ icon, label, ...socialProps }) => (
-            <li>
-              <Link
-                {...socialProps}
-                aria-label={label}
-                class="grid size-16 place-items-center rounded-full border-2 border-white"
-              >
-                {icon && <Icon size={32} name={icon.name} title={icon.title} style={icon.style} />}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )
-    }
+    {socials.length > 0 && (
+      <ul class="flex justify-center gap-x-10">
+        {socials.map(({ icon, label, ...socialProps }) => (
+          <li>
+            <Link
+              {...socialProps}
+              aria-label={label}
+              class="grid size-16 place-items-center rounded-full border-2 border-white"
+            >
+              {icon && <Icon size={32} name={icon.name} title={icon.title} style={icon.style} />}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    )}
 
     <Container
       unlimited

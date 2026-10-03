@@ -26,15 +26,13 @@ const { class: extraClass, sections } = Astro.props
     <Text>Erick Vargas</Text>
   </article>
 
-  {
-    sections && (
-      <ul class="flex gap-x-6 pr-4 *:text-sm">
-        {sections.map(({ link, name }) => (
-          <li>
-            <Link to={link}>{name}</Link>
-          </li>
-        ))}
-      </ul>
-    )
-  }
+  {sections && (
+    <ul class="flex gap-x-6 pr-4 *:text-sm">
+      {sections.map(({ link, name }) => (
+        <li>
+          <Link to={link}>{name}</Link>
+        </li>
+      ))}
+    </ul>
+  )}
 </Container>
