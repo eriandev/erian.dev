@@ -16,7 +16,7 @@ export default defineConfig({
   },
   image: {
     domains: ['images.ctfassets.net'],
-    remotePatterns: [{ protocol }],
+    remotePatterns: [{ protocol, hostname: 'images.ctfassets.net' }],
   },
   vite: {
     plugins: [tailwindcss()],
