@@ -1,11 +1,29 @@
 ---
 import type { LinkProps as Props } from '@/components/types'
 
-const { to, title, external = false, featured = false, btn = false, class: extraClass, ...restProps } = Astro.props
-const rel = external ? 'noopener noreferrer' : null
+const {
+  to,
+  title,
+  btn = false,
+  external = false,
+  featured = false,
+  class: extraClass,
+  'aria-label': ariaLabel,
+  ...restProps
+} = Astro.props
 const target = external ? '_blank' : null
+const rel = external ? 'noopener noreferrer' : null
 ---
 
-<a {rel} {target} {title} href={to} class:list={[{ btn, 'link featured': featured }, extraClass]} {...restProps}>
+<a
+  {rel}
+  {title}
+  {target}
+  href={to}
+  aria-label={ariaLabel}
+  class:list={[{ btn, link: !btn, featured }, extraClass]}
+  {...restProps}
+>
   <slot />
+  {external && ariaLabel == null && <span class="sr-only">(opens in new tab)</span>}
 </a>
