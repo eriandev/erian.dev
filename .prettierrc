@@ -4,5 +4,13 @@
   "singleQuote": true,
   "trailingComma": "all",
   "tailwindStylesheet": "./src/app.css",
-  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "overrides": [
+    {
+      "files": "*.svg",
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
 }
